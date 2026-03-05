@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server';
-import { readCollection, updateItem, deleteItem } from '@/lib/db';
+import { getItemById, updateItem, deleteItem } from '@/lib/db';
 
 export async function GET(request, { params }) {
   try {
-    const projects = readCollection('projects');
-    const project = projects.find(p => p.id === params.id);
+    const project = await getItemById('projects', params.id);
     if (!project) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     return NextResponse.json(project);
   } catch (error) {
@@ -15,13 +14,7 @@ export async function GET(request, { params }) {
 export async function PUT(request, { params }) {
   try {
     const body = await request.json();
-    if (body.tools && typeof body.tools === 'string') {
-      body.tools = body.tools.split(',').map(s => s.trim()).filter(Boolean);
-    }
-    if (body.tags && typeof body.tags === 'string') {
-      body.tags = body.tags.split(',').map(s => s.trim()).filter(Boolean);
-    }
-    const updated = updateItem('projects', params.id, body);
+    const updated = await updateItem('projects', params.id, body);
     if (!updated) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     return NextResponse.json(updated);
   } catch (error) {
@@ -31,7 +24,7 @@ export async function PUT(request, { params }) {
 
 export async function DELETE(request, { params }) {
   try {
-    const deleted = deleteItem('projects', params.id);
+    const deleted = await deleteItem('projects', params.id);
     if (!deleted) return NextResponse.json({ error: 'Not found' }, { status: 404 });
     return NextResponse.json({ success: true });
   } catch (error) {
