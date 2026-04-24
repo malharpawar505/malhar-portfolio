@@ -122,7 +122,7 @@ export default function AdminPage() {
     const res = await fetch(`/api/activities/${id}`, { method: 'DELETE' });
     const data = await res.json();
     if (!data.success) {
-      alert('❌ Cannot delete in Demo Mode. Please connect Supabase to manage data.');
+      alert('❌ Cannot delete in Demo Mode. Please ensure DATABASE_URL is set in Vercel and you have redeployed.');
     }
     fetchAll();
   };
@@ -218,11 +218,6 @@ export default function AdminPage() {
                 <h1 className="text-2xl font-bold">Dashboard</h1>
                 <p className="text-sm text-text-muted mt-1">Welcome back, Malhar</p>
               </div>
-              {!process.env.NEXT_PUBLIC_SUPABASE_URL && (
-                <div className="px-4 py-2 bg-accent-red/10 border border-accent-red/20 rounded-xl text-accent-red text-xs font-semibold animate-pulse">
-                  ⚠️ Database Disconnected (Using Demo Mode)
-                </div>
-              )}
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
