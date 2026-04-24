@@ -8,22 +8,22 @@ import {
 import { useState, useEffect } from 'react';
 
 const TECHNOLOGIES = [
-  { name: 'Power BI', color: '#F2C811', cat: 'BI' },
-  { name: 'SQL', color: '#50c878', cat: 'Data' },
-  { name: 'Python', color: '#3776ab', cat: 'Data' },
-  { name: 'DAX', color: '#F2C811', cat: 'BI' },
-  { name: 'Microsoft Fabric', color: '#4a9eff', cat: 'Cloud' },
-  { name: 'Azure Synapse', color: '#0078d4', cat: 'Cloud' },
-  { name: 'Azure Data Factory', color: '#0078d4', cat: 'Cloud' },
-  { name: 'Snowflake', color: '#29b5e8', cat: 'Cloud' },
-  { name: 'Azure DevOps', color: '#0078d4', cat: 'Cloud' },
-  { name: 'ETL / ELT Pipelines', color: '#50c878', cat: 'Data' },
-  { name: 'Data Modeling', color: '#c9a84c', cat: 'Data' },
-  { name: 'Data Warehouse', color: '#c9a84c', cat: 'Data' },
-  { name: 'LLM / AI', color: '#ff6b6b', cat: 'AI' },
-  { name: 'MCP Servers', color: '#ff6b6b', cat: 'AI' },
-  { name: 'Medallion Architecture', color: '#50c878', cat: 'Data' },
-  { name: 'Git & GitHub', color: '#8b949e', cat: 'Tools' },
+  { name: 'Power BI', color: '#F2C811', cat: 'BI', icon: 'https://cdn.simpleicons.org/powerbi/F2C811' },
+  { name: 'SQL', color: '#50c878', cat: 'Data', icon: 'https://cdn.simpleicons.org/postgresql/50c878' },
+  { name: 'Python', color: '#3776ab', cat: 'Data', icon: 'https://cdn.simpleicons.org/python/3776ab' },
+  { name: 'DAX', color: '#F2C811', cat: 'BI', icon: 'https://cdn.simpleicons.org/powerbi/F2C811' },
+  { name: 'Microsoft Fabric', color: '#4a9eff', cat: 'Cloud', icon: 'https://cdn.simpleicons.org/microsoft/4a9eff' },
+  { name: 'Azure Synapse', color: '#0078d4', cat: 'Cloud', icon: 'https://cdn.simpleicons.org/microsoftazure/0078d4' },
+  { name: 'Azure Data Factory', color: '#0078d4', cat: 'Cloud', icon: 'https://cdn.simpleicons.org/microsoftazure/0078d4' },
+  { name: 'Snowflake', color: '#29b5e8', cat: 'Cloud', icon: 'https://cdn.simpleicons.org/snowflake/29b5e8' },
+  { name: 'Azure DevOps', color: '#0078d4', cat: 'Cloud', icon: 'https://cdn.simpleicons.org/azuredevops/0078d4' },
+  { name: 'ETL / ELT', color: '#50c878', cat: 'Data', icon: 'https://cdn.simpleicons.org/databricks/50c878' },
+  { name: 'Data Modeling', color: '#c9a84c', cat: 'Data', icon: 'https://cdn.simpleicons.org/prisma/c9a84c' },
+  { name: 'Data Warehouse', color: '#c9a84c', cat: 'Data', icon: 'https://cdn.simpleicons.org/amazonredshift/c9a84c' },
+  { name: 'LLM / AI', color: '#ff6b6b', cat: 'AI', icon: 'https://cdn.simpleicons.org/openai/ff6b6b' },
+  { name: 'MCP Servers', color: '#ff6b6b', cat: 'AI', icon: 'https://cdn.simpleicons.org/anthropic/ff6b6b' },
+  { name: 'Medallion Architecture', color: '#50c878', cat: 'Data', icon: 'https://cdn.simpleicons.org/apachespark/50c878' },
+  { name: 'Git & GitHub', color: '#8b949e', cat: 'Tools', icon: 'https://cdn.simpleicons.org/github/8b949e' },
 ];
 
 const AI_EXPERIMENTS = [
@@ -195,13 +195,16 @@ export default function HomePage() {
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">My Technical Arsenal</h2>
             <p className="text-text-secondary max-w-lg mb-12">Tools and technologies I use daily to build data platforms and intelligence systems.</p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
             {TECHNOLOGIES.map((tech, i) => (
               <Reveal key={i} type="scale" delay={Math.min((i % 8) + 1, 8)}>
-                <div className="card-hover flex items-center gap-3 px-4 py-3.5 bg-bg-card border border-border rounded-xl text-sm font-medium cursor-default group">
-                  <span className="w-2 h-2 rounded-full flex-shrink-0 transition-transform duration-300 group-hover:scale-150" style={{ background: tech.color }} />
-                  <span className="flex-1 truncate">{tech.name}</span>
-                  <span className="text-[10px] text-text-muted font-mono">{tech.cat}</span>
+                <div className="card-hover flex items-center gap-3 px-4 py-4 bg-bg-card border border-border rounded-xl text-sm font-medium cursor-default group relative overflow-hidden">
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300" style={{ backgroundColor: tech.color }} />
+                  <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                    <img src={tech.icon} alt={tech.name} className="w-full h-full object-contain filter drop-shadow-sm" />
+                  </div>
+                  <span className="flex-1 truncate relative z-10">{tech.name}</span>
+                  <span className="text-[10px] text-text-muted font-mono relative z-10">{tech.cat}</span>
                 </div>
               </Reveal>
             ))}
