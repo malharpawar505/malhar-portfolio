@@ -3,24 +3,25 @@ import Link from 'next/link';
 import { Reveal, AnimatedCounter } from '@/components/Reveal';
 import {
   ChevronRight, Mail, Github, Linkedin, BarChart3, Database,
-  Brain, Zap, Terminal, Award, MapPin, ArrowUpRight
+  Brain, Zap, Terminal, Award, MapPin, ArrowUpRight,
+  Layers, Workflow, Factory, GitMerge, Calculator, Network
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const TECHNOLOGIES = [
-  { name: 'Power BI', color: '#F2C811', cat: 'BI', icon: 'https://cdn.simpleicons.org/powerbi/F2C811' },
+  { name: 'Power BI', color: '#F2C811', cat: 'BI', LucideIcon: BarChart3 },
   { name: 'SQL', color: '#50c878', cat: 'Data', icon: 'https://cdn.simpleicons.org/postgresql/50c878' },
   { name: 'Python', color: '#3776ab', cat: 'Data', icon: 'https://cdn.simpleicons.org/python/3776ab' },
-  { name: 'DAX', color: '#F2C811', cat: 'BI', icon: 'https://cdn.simpleicons.org/powerbi/F2C811' },
-  { name: 'Microsoft Fabric', color: '#4a9eff', cat: 'Cloud', icon: 'https://cdn.simpleicons.org/microsoft/4a9eff' },
-  { name: 'Azure Synapse', color: '#0078d4', cat: 'Cloud', icon: 'https://cdn.simpleicons.org/microsoftazure/0078d4' },
-  { name: 'Azure Data Factory', color: '#0078d4', cat: 'Cloud', icon: 'https://cdn.simpleicons.org/microsoftazure/0078d4' },
+  { name: 'DAX', color: '#F2C811', cat: 'BI', LucideIcon: Calculator },
+  { name: 'Microsoft Fabric', color: '#4a9eff', cat: 'Cloud', LucideIcon: Layers },
+  { name: 'Azure Synapse', color: '#0078d4', cat: 'Cloud', LucideIcon: Network },
+  { name: 'Azure Data Factory', color: '#0078d4', cat: 'Cloud', LucideIcon: Factory },
   { name: 'Snowflake', color: '#29b5e8', cat: 'Cloud', icon: 'https://cdn.simpleicons.org/snowflake/29b5e8' },
-  { name: 'Azure DevOps', color: '#0078d4', cat: 'Cloud', icon: 'https://cdn.simpleicons.org/azuredevops/0078d4' },
+  { name: 'Azure DevOps', color: '#0078d4', cat: 'Cloud', LucideIcon: GitMerge },
   { name: 'ETL / ELT', color: '#50c878', cat: 'Data', icon: 'https://cdn.simpleicons.org/databricks/50c878' },
   { name: 'Data Modeling', color: '#c9a84c', cat: 'Data', icon: 'https://cdn.simpleicons.org/prisma/c9a84c' },
-  { name: 'Data Warehouse', color: '#c9a84c', cat: 'Data', icon: 'https://cdn.simpleicons.org/amazonredshift/c9a84c' },
-  { name: 'LLM / AI', color: '#ff6b6b', cat: 'AI', icon: 'https://cdn.simpleicons.org/openai/ff6b6b' },
+  { name: 'Data Warehouse', color: '#c9a84c', cat: 'Data', LucideIcon: Database },
+  { name: 'LLM / AI', color: '#ff6b6b', cat: 'AI', LucideIcon: Brain },
   { name: 'MCP Servers', color: '#ff6b6b', cat: 'AI', icon: 'https://cdn.simpleicons.org/anthropic/ff6b6b' },
   { name: 'Medallion Architecture', color: '#50c878', cat: 'Data', icon: 'https://cdn.simpleicons.org/apachespark/50c878' },
   { name: 'Git & GitHub', color: '#8b949e', cat: 'Tools', icon: 'https://cdn.simpleicons.org/github/8b949e' },
@@ -200,8 +201,12 @@ export default function HomePage() {
               <Reveal key={i} type="scale" delay={Math.min((i % 8) + 1, 8)}>
                 <div className="card-hover flex items-center gap-3 px-4 py-4 bg-bg-card border border-border rounded-xl text-sm font-medium cursor-default group relative overflow-hidden">
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300" style={{ backgroundColor: tech.color }} />
-                  <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                    <img src={tech.icon} alt={tech.name} className="w-full h-full object-contain filter drop-shadow-sm" />
+                  <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={{ color: tech.color }}>
+                    {tech.LucideIcon ? (
+                      <tech.LucideIcon size={20} strokeWidth={1.5} />
+                    ) : (
+                      <img src={tech.icon} alt={tech.name} className="w-full h-full object-contain filter drop-shadow-sm" />
+                    )}
                   </div>
                   <span className="flex-1 truncate relative z-10">{tech.name}</span>
                   <span className="text-[10px] text-text-muted font-mono relative z-10">{tech.cat}</span>
