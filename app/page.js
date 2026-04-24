@@ -348,7 +348,8 @@ export default function HomePage() {
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
             {blogs.map((b, i) => (
               <Reveal key={b.id} delay={i + 1}>
-                <div className="card-hover p-7 bg-bg-card border border-border rounded-2xl cursor-pointer group">
+                <a href={b.link} target="_blank" rel="noopener noreferrer" className="block h-full">
+                <div className="card-hover p-7 bg-bg-card border border-border rounded-2xl cursor-pointer group h-full">
                   <div className="flex items-center gap-3 mb-4 text-xs text-text-muted">
                     <span className="font-medium">{b.category}</span>
                     <span className="w-1 h-1 rounded-full bg-text-muted" />
@@ -357,9 +358,10 @@ export default function HomePage() {
                   <h3 className="text-lg font-bold mb-2 leading-snug group-hover:text-accent transition-colors">{b.title}</h3>
                   <p className="text-sm text-text-secondary leading-relaxed line-clamp-2 mb-4">{b.excerpt}</p>
                   <span className="inline-flex items-center gap-1.5 text-xs text-accent font-semibold group-hover:gap-2.5 transition-all duration-300">
-                    Read More <ArrowUpRight size={13} />
+                    Read on LinkedIn <ArrowUpRight size={13} />
                   </span>
                 </div>
+                </a>
               </Reveal>
             ))}
           </div>

@@ -50,6 +50,7 @@ export default function BlogPage() {
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
             {filtered.map((b, i) => (
               <Reveal key={b.id} type="scale" delay={Math.min(i + 1, 6)}>
+                <a href={b.link} target="_blank" rel="noopener noreferrer" className="block h-full">
                 <article className="card-hover p-7 bg-bg-card border border-border rounded-2xl cursor-pointer group h-full flex flex-col">
                   <div className="flex items-center gap-3 mb-4 text-xs text-text-muted">
                     <span className="font-semibold text-accent">{b.category}</span>
@@ -59,9 +60,10 @@ export default function BlogPage() {
                   <h2 className="text-xl font-bold mb-3 leading-snug group-hover:text-accent transition-colors flex-1">{b.title}</h2>
                   <p className="text-sm text-text-secondary leading-relaxed line-clamp-3 mb-5">{b.excerpt}</p>
                   <span className="inline-flex items-center gap-1.5 text-xs text-accent font-semibold group-hover:gap-2.5 transition-all duration-300 mt-auto">
-                    Read Article <ArrowUpRight size={13} />
+                    Read on LinkedIn <ArrowUpRight size={13} />
                   </span>
                 </article>
+                </a>
               </Reveal>
             ))}
           </div>
