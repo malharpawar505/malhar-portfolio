@@ -6,8 +6,8 @@ import {
   Send, Settings, Bell
 } from 'lucide-react';
 
-const ADMIN_PASS = 'admin123';
-const ADMIN_EMAIL = 'malhar@admin.com';
+const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'pawarmalhar505@gmail.com';
+const ADMIN_PASS = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin123';
 
 function Modal({ title, onClose, children }) {
   return (
@@ -129,7 +129,7 @@ export default function AdminPage() {
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-text-secondary mb-2">Email</label>
-              <input className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-xl text-sm input-focus" placeholder="malhar@admin.com" value={email} onChange={e => setEmail(e.target.value)} />
+              <input className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-xl text-sm input-focus" placeholder="pawarmalhar505@gmail.com" value={email} onChange={e => setEmail(e.target.value)} />
             </div>
             <div>
               <label className="block text-sm font-semibold text-text-secondary mb-2">Password</label>
@@ -138,7 +138,6 @@ export default function AdminPage() {
             <button onClick={handleLogin} className="w-full py-3.5 bg-gradient-to-r from-accent to-emerald-600 text-bg-primary font-bold text-sm rounded-xl hover:shadow-[0_8px_30px_rgba(80,200,120,0.3)] transition-all">
               Sign In
             </button>
-            <p className="text-center text-xs text-text-muted mt-3">Demo: malhar@admin.com / admin123</p>
           </div>
         </div>
       </div>
@@ -209,6 +208,11 @@ export default function AdminPage() {
                 <h1 className="text-2xl font-bold">Dashboard</h1>
                 <p className="text-sm text-text-muted mt-1">Welcome back, Malhar</p>
               </div>
+              {!process.env.NEXT_PUBLIC_SUPABASE_URL && (
+                <div className="px-4 py-2 bg-accent-red/10 border border-accent-red/20 rounded-xl text-accent-red text-xs font-semibold animate-pulse">
+                  ⚠️ Database Disconnected (Using Demo Mode)
+                </div>
+              )}
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
