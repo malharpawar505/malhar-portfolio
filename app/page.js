@@ -36,6 +36,8 @@ const AI_EXPERIMENTS = [
 
 import Magnetic from '@/components/Magnetic';
 import FloatingLogos from '@/components/FloatingLogos';
+import Typewriter from '@/components/Typewriter';
+import TerminalEntry from '@/components/TerminalEntry';
 
 export default function HomePage() {
   const [projects, setProjects] = useState([]);
@@ -159,15 +161,17 @@ export default function HomePage() {
                     <span className="w-3 h-3 rounded-full bg-accent/60" />
                     <span className="ml-3 font-mono text-[11px] text-text-muted">current_focus.json</span>
                   </div>
-                  <pre className="font-mono text-[13px] leading-[1.9]">
-<span className="text-text-muted">{'{'}</span>{'\n'}
-<span className="text-accent">  "role"</span>: <span className="text-accent-gold">"Analytics Engineer"</span>,{'\n'}
-<span className="text-accent">  "company"</span>: <span className="text-accent-gold">"Prosys Infotech"</span>,{'\n'}
-<span className="text-accent">  "location"</span>: <span className="text-accent-gold">"Pune, India"</span>,{'\n'}
-<span className="text-accent">  "cert"</span>: <span className="text-accent-gold">"Fabric Analytics Engineer"</span>,{'\n'}
-<span className="text-accent">  "building"</span>: <span className="text-accent-gold">"LLM-powered BI copilots"</span>{'\n'}
-<span className="text-text-muted">{'}'}</span>
-                  </pre>
+                  <Typewriter 
+                    delay={3.5}
+                    speed={25}
+                    codeString={`{
+  "role": "Analytics Engineer",
+  "company": "Prosys Infotech",
+  "location": "Pune, India",
+  "cert": "Fabric Analytics Engineer",
+  "building": "LLM-powered BI copilots"
+}`} 
+                  />
                 </div>
                 {/* Social links */}
                 <div className="flex gap-3">
@@ -286,7 +290,7 @@ export default function HomePage() {
               const Icon = exp.icon;
               return (
                 <Reveal key={i} type="scale" delay={i + 1}>
-                  <div className="card-hover p-7 bg-bg-card border border-border rounded-2xl relative overflow-hidden group">
+                  <div className="card-hover p-7 bg-bg-card border border-border rounded-2xl relative overflow-hidden group animate-[aiGlow_4s_ease-in-out_infinite_alternate]">
                     <div className="absolute -top-20 -right-20 w-48 h-48 bg-accent-gold/5 rounded-full blur-3xl group-hover:bg-accent-gold/8 transition-all duration-500" />
                     <div className="relative z-10">
                       <div className="w-12 h-12 rounded-xl bg-accent-gold-dim flex items-center justify-center text-accent-gold mb-5 transition-transform duration-300 group-hover:scale-110">
@@ -323,26 +327,9 @@ export default function HomePage() {
             <p className="text-text-secondary max-w-lg mb-12">A timeline of recent technical explorations and experiments.</p>
           </Reveal>
 
-          <div className="space-y-0">
+          <div className="space-y-2">
             {activities.map((a, i) => (
-              <Reveal key={a.id} delay={i + 1}>
-                <div className="flex gap-5 pb-8">
-                  <div className="flex flex-col items-center">
-                    <div className="w-3 h-3 rounded-full bg-accent border-2 border-bg-primary ring-4 ring-accent-dim flex-shrink-0" />
-                    {i < activities.length - 1 && <div className="w-px flex-1 bg-border mt-1" />}
-                  </div>
-                  <div className="pb-6 flex-1">
-                    <p className="font-mono text-[11px] text-text-muted mb-1.5">{a.date}</p>
-                    <h4 className="text-[15px] font-semibold mb-1">{a.title}</h4>
-                    <p className="text-sm text-text-secondary leading-relaxed mb-2">{a.description}</p>
-                    <div className="flex gap-1.5 flex-wrap">
-                      {a.tags?.map((t, j) => (
-                        <span key={j} className="px-2 py-0.5 bg-bg-secondary border border-border rounded text-[10px] font-mono text-text-muted">{t}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
+              <TerminalEntry key={a.id || i} activity={a} index={i} isLast={i === activities.length - 1} />
             ))}
           </div>
         </div>
