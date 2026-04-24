@@ -60,7 +60,7 @@ export default function BlogPage() {
                   <h2 className="text-xl font-bold mb-3 leading-snug group-hover:text-accent transition-colors flex-1">{b.title}</h2>
                   <p className="text-sm text-text-secondary leading-relaxed line-clamp-3 mb-5">{b.excerpt}</p>
                   <span className="inline-flex items-center gap-1.5 text-xs text-accent font-semibold group-hover:gap-2.5 transition-all duration-300 mt-auto">
-                    Read on LinkedIn <ArrowUpRight size={13} />
+                    {b.link?.includes('medium.com') ? 'Read on Medium' : 'Read on LinkedIn'} <ArrowUpRight size={13} />
                   </span>
                 </article>
                 </a>

@@ -358,7 +358,7 @@ export default function HomePage() {
                   <h3 className="text-lg font-bold mb-2 leading-snug group-hover:text-accent transition-colors">{b.title}</h3>
                   <p className="text-sm text-text-secondary leading-relaxed line-clamp-2 mb-4">{b.excerpt}</p>
                   <span className="inline-flex items-center gap-1.5 text-xs text-accent font-semibold group-hover:gap-2.5 transition-all duration-300">
-                    Read on LinkedIn <ArrowUpRight size={13} />
+                    {b.link?.includes('medium.com') ? 'Read on Medium' : 'Read on LinkedIn'} <ArrowUpRight size={13} />
                   </span>
                 </div>
                 </a>
