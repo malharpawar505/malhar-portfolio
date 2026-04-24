@@ -119,7 +119,11 @@ export default function AdminPage() {
 
   const deleteActivity = async (id) => {
     if (!confirm('Delete this activity?')) return;
-    await fetch(`/api/activities/${id}`, { method: 'DELETE' });
+    const res = await fetch(`/api/activities/${id}`, { method: 'DELETE' });
+    const data = await res.json();
+    if (!data.success) {
+      alert('❌ Cannot delete in Demo Mode. Please connect Supabase to manage data.');
+    }
     fetchAll();
   };
 
