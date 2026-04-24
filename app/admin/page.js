@@ -122,7 +122,7 @@ export default function AdminPage() {
     const res = await fetch(`/api/activities/${id}`, { method: 'DELETE' });
     const data = await res.json();
     if (!data.success) {
-      alert('❌ Cannot delete in Demo Mode. Please ensure DATABASE_URL is set in Vercel and you have redeployed.');
+      alert(`❌ Error: ${data.error || 'Unknown error'}\n\nIf this says "relation does not exist", you need to run the SQL script in Neon.`);
     }
     fetchAll();
   };
