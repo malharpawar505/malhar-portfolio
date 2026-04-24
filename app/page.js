@@ -162,8 +162,8 @@ export default function HomePage() {
                     <span className="ml-3 font-mono text-[11px] text-text-muted">current_focus.json</span>
                   </div>
                   <Typewriter 
-                    delay={3.5}
-                    speed={25}
+                    delay={1.5}
+                    speed={15}
                     codeString={`{
   "role": "Analytics Engineer",
   "company": "Prosys Infotech",

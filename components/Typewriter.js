@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useReveal } from './Reveal';
 
 export default function Typewriter({ codeString, delay = 0, speed = 30 }) {
-  const [ref, visible] = useReveal(0.5);
+  const [ref, visible] = useReveal(0.1);
   const [displayedText, setDisplayedText] = useState('');
   const [hasStarted, setHasStarted] = useState(false);
 
