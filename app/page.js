@@ -33,6 +33,8 @@ const AI_EXPERIMENTS = [
   { title: 'AI Data Quality Monitor', desc: 'AI-driven data reconciliation and validation that learns patterns and flags pipeline anomalies.', icon: Database },
 ];
 
+import Magnetic from '@/components/Magnetic';
+
 export default function HomePage() {
   const [projects, setProjects] = useState([]);
   const [blogs, setBlogs] = useState([]);
@@ -55,50 +57,51 @@ export default function HomePage() {
   return (
     <div className="page-enter">
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-grid" style={{ maskImage: 'radial-gradient(ellipse 70% 50% at 50% 50%, black, transparent)' }} />
+          <div className="absolute inset-0 bg-grid opacity-30" style={{ maskImage: 'radial-gradient(ellipse 70% 50% at 50% 50%, black, transparent)' }} />
           <div className="absolute inset-0" style={{
             background: 'radial-gradient(ellipse 80% 60% at 15% 50%, rgba(80,200,120,0.06) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 85% 20%, rgba(201,168,76,0.04) 0%, transparent 50%)'
           }} />
-          {/* Floating orbs */}
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-float" />
-          <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-accent-gold/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '3s' }} />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full py-12">
           <Reveal delay={1}>
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-accent-dim border border-accent/20 font-mono text-xs text-accent font-medium tracking-wide mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-glow" />
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
               Open to opportunities · Data Engineering & AI
             </div>
           </Reveal>
 
           <Reveal delay={2}>
-            <h1 className="text-[clamp(2.5rem,6vw,5rem)] font-extrabold leading-[1.05] tracking-tight max-w-4xl mb-7">
+            <h1 className="text-[clamp(2.8rem,7vw,5.5rem)] font-extrabold leading-[1.0] tracking-tighter max-w-5xl mb-8 font-serif italic">
               Building{' '}
-              <span className="gradient-text">Intelligent Data Systems</span>
+              <span className="gradient-text not-italic">Intelligent Data Systems</span>
               {' '}That Drive Decisions
             </h1>
           </Reveal>
 
           <Reveal delay={3}>
-            <p className="text-lg text-text-secondary max-w-xl leading-relaxed mb-10">
-              I'm <span className="text-text-primary font-semibold">Malhar Pawar</span> — a Data & Analytics Engineer turning raw data into business intelligence platforms, AI-powered copilots, and scalable data architectures.
+            <p className="text-xl text-text-secondary max-w-xl leading-relaxed mb-12 font-medium">
+              I'm <span className="text-text-primary">Malhar Pawar</span> — an Analytics Architect building high-performance data platforms and AI-powered intelligence.
             </p>
           </Reveal>
 
           <Reveal delay={4}>
-            <div className="flex flex-wrap gap-4 mb-16">
-              <Link href="/projects"
-                className="btn-ripple inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-accent to-emerald-600 text-bg-primary font-bold text-sm rounded-xl hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(80,200,120,0.3)] transition-all duration-300">
-                View My Work <ChevronRight size={16} />
-              </Link>
-              <Link href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 border border-border rounded-xl text-sm font-semibold hover:border-text-secondary hover:bg-bg-card transition-all duration-300">
-                <Mail size={16} /> Get In Touch
-              </Link>
+            <div className="flex flex-wrap gap-6 mb-16">
+              <Magnetic strength={0.2}>
+                <Link href="/projects"
+                  className="btn-ripple inline-flex items-center gap-2 px-8 py-4 bg-accent text-bg-primary font-bold text-sm rounded-xl transition-all duration-300">
+                  View My Work <ChevronRight size={16} />
+                </Link>
+              </Magnetic>
+              <Magnetic strength={0.2}>
+                <Link href="/contact"
+                  className="inline-flex items-center gap-2 px-8 py-4 border border-border rounded-xl text-sm font-semibold hover:border-accent hover:text-accent transition-all duration-300">
+                  <Mail size={16} /> Get In Touch
+                </Link>
+              </Magnetic>
             </div>
           </Reveal>
 

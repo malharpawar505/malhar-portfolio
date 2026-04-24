@@ -23,10 +23,14 @@ export const metadata = {
   robots: { index: true, follow: true },
 };
 
+import MouseTrailer from '@/components/MouseTrailer';
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="min-h-screen flex flex-col noise">
+      <body className="min-h-screen flex flex-col noise overflow-x-hidden">
+        <MouseTrailer />
+        <div className="mesh-bg" />
         <Navbar />
         <main className="flex-1">
           {children}
