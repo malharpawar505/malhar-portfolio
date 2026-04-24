@@ -28,7 +28,7 @@ import MouseTrailer from '@/components/MouseTrailer';
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="min-h-screen flex flex-col noise overflow-x-hidden">
+      <body className="min-h-screen flex flex-col overflow-x-hidden">
         <MouseTrailer />
         <div className="mesh-bg" />
         <Navbar />
