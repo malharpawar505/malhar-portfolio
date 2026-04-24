@@ -41,7 +41,7 @@ export default function Footer() {
                 className="text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2">
                 <Linkedin size={15} /> LinkedIn
               </a>
-              <a href="mailto:malharpawar505@gmail.com"
+              <a href="mailto:pawarmalhar505@gmail.com"
                 className="text-sm text-text-secondary hover:text-text-primary transition-colors flex items-center gap-2">
                 <Mail size={15} /> Email
               </a>

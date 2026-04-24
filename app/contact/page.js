@@ -102,7 +102,7 @@ export default function ContactPage() {
                   {[
                     { icon: Linkedin, label: 'linkedin.com/in/malharpawar505', href: 'https://www.linkedin.com/in/malharpawar505/' },
                     { icon: Github, label: 'github.com/malharpawar505', href: 'https://github.com/malharpawar505' },
-                    { icon: Mail, label: 'malharpawar505@gmail.com', href: 'mailto:malharpawar505@gmail.com' },
+                    { icon: Mail, label: 'pawarmalhar505@gmail.com', href: 'mailto:pawarmalhar505@gmail.com' },
                     { icon: MapPin, label: 'Pune, Maharashtra, India', href: null },
                   ].map((item, i) => {
                     const Icon = item.icon;

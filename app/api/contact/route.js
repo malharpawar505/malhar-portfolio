@@ -31,7 +31,7 @@ export async function POST(request) {
     if (process.env.RESEND_API_KEY) {
       await resend.emails.send({
         from: 'Portfolio Contact <onboarding@resend.dev>',
-        to: 'malharpawar505@gmail.com',
+        to: 'pawarmalhar505@gmail.com',
         subject: `New Message from ${name} via Portfolio`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
