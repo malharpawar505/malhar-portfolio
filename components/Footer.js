@@ -53,9 +53,6 @@ export default function Footer() {
           <p className="text-xs text-text-muted">
             &copy; {new Date().getFullYear()} Malhar Pawar. Built with precision and purpose.
           </p>
-          <p className="text-xs text-text-muted">
-            Next.js · Tailwind CSS · Vercel
-          </p>
         </div>
       </div>
     </footer>
