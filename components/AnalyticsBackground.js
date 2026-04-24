@@ -2,79 +2,103 @@
 import { motion } from 'framer-motion';
 
 export default function AnalyticsBackground() {
-  // Array to generate background bars
-  const bars = Array.from({ length: 15 });
+  // Generate random particles
+  const particles = Array.from({ length: 20 });
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-[0.08]">
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
       
-      {/* --- Animated Line Chart (SVG) --- */}
-      <svg 
-        className="absolute bottom-0 w-full h-1/2" 
-        preserveAspectRatio="none" 
-        viewBox="0 0 1000 200"
-      >
+      {/* --- Glowing Floating Orbs (Antigravity Vibe) --- */}
+      <motion.div 
+        className="absolute top-1/4 left-1/4 w-[30vw] h-[30vw] rounded-full mix-blend-screen filter blur-[100px] opacity-40 bg-gradient-to-r from-emerald-500 to-teal-400"
+        animate={{ 
+          x: [0, 100, -50, 0],
+          y: [0, -100, 50, 0],
+          scale: [1, 1.2, 0.8, 1]
+        }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div 
+        className="absolute top-1/3 right-1/4 w-[25vw] h-[25vw] rounded-full mix-blend-screen filter blur-[100px] opacity-30 bg-gradient-to-r from-purple-600 to-blue-500"
+        animate={{ 
+          x: [0, -150, 50, 0],
+          y: [0, 100, -50, 0],
+          scale: [1, 1.3, 0.9, 1]
+        }}
+        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+      />
+      <motion.div 
+        className="absolute bottom-1/4 left-1/3 w-[35vw] h-[35vw] rounded-full mix-blend-screen filter blur-[120px] opacity-20 bg-gradient-to-r from-pink-500 to-orange-400"
+        animate={{ 
+          x: [0, 100, -100, 0],
+          y: [0, 50, -150, 0],
+          scale: [1, 1.1, 0.9, 1]
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+      />
+
+      {/* --- Sleek Gradient Data Lines --- */}
+      <svg className="absolute inset-0 w-full h-full opacity-60" preserveAspectRatio="none" viewBox="0 0 1000 1000">
+        <defs>
+          <linearGradient id="lineGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#10b981" stopOpacity="0" />
+            <stop offset="50%" stopColor="#3b82f6" stopOpacity="1" />
+            <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="lineGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#f59e0b" stopOpacity="0" />
+            <stop offset="50%" stopColor="#ec4899" stopOpacity="1" />
+            <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
         <motion.path
-          d="M 0 150 Q 50 50 150 120 T 300 80 T 450 160 T 600 60 T 750 140 T 900 40 T 1000 100"
+          d="M -100 800 Q 200 400 500 700 T 1100 500"
           fill="none"
-          stroke="var(--accent)"
-          strokeWidth="3"
-          strokeLinecap="round"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 4, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
-        />
-        <motion.path
-          d="M 0 100 Q 80 180 200 90 T 400 120 T 550 40 T 700 150 T 850 80 T 1000 160"
-          fill="none"
-          stroke="var(--accent-gold)"
+          stroke="url(#lineGrad1)"
           strokeWidth="2"
           strokeLinecap="round"
-          strokeDasharray="10 10"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 0.5 }}
-          transition={{ duration: 6, ease: "linear", repeat: Infinity }}
+          initial={{ pathLength: 0, pathOffset: 1 }}
+          animate={{ pathLength: 1, pathOffset: 0 }}
+          transition={{ duration: 8, ease: "easeInOut", repeat: Infinity, repeatType: "loop" }}
+        />
+        
+        <motion.path
+          d="M -100 400 Q 300 800 600 300 T 1100 600"
+          fill="none"
+          stroke="url(#lineGrad2)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, pathOffset: 1 }}
+          animate={{ pathLength: 1, pathOffset: 0 }}
+          transition={{ duration: 12, ease: "easeInOut", repeat: Infinity, repeatType: "loop", delay: 2 }}
         />
       </svg>
 
-      {/* --- Animated Bar Chart --- */}
-      <div className="absolute bottom-0 left-0 w-full h-1/3 flex items-end justify-between px-10 gap-4">
-        {bars.map((_, i) => (
+      {/* --- Floating Antigravity Particles --- */}
+      <div className="absolute inset-0">
+        {particles.map((_, i) => (
           <motion.div
             key={i}
-            className="w-16 bg-gradient-to-t from-accent-dim/40 to-transparent rounded-t-sm"
-            initial={{ height: '10%' }}
-            animate={{
-              height: ['10%', `${Math.random() * 80 + 20}%`, '10%'],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: Math.random() * 2
-            }}
-          />
-        ))}
-      </div>
-
-      {/* --- Floating Data Nodes (Scatter Plot Vibe) --- */}
-      <div className="absolute top-1/4 right-1/4 w-full h-full">
-        {[1, 2, 3, 4, 5].map((node) => (
-          <motion.div
-            key={`node-${node}`}
-            className="absolute w-2 h-2 rounded-full bg-accent"
+            className="absolute rounded-full bg-white"
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              opacity: Math.random() * 0.5 + 0.1,
+              boxShadow: `0 0 ${Math.random() * 10 + 5}px rgba(255,255,255,0.8)`
             }}
             animate={{
-              y: [0, Math.random() * -50, 0],
-              opacity: [0.2, 0.8, 0.2]
+              y: [0, Math.random() * -200 - 100],
+              x: [0, Math.random() * 100 - 50],
+              opacity: [0, Math.random() * 0.8 + 0.2, 0],
             }}
             transition={{
-              duration: 3 + Math.random() * 3,
+              duration: Math.random() * 10 + 10,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "linear",
+              delay: Math.random() * 10
             }}
           />
         ))}
