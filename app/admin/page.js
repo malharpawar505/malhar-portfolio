@@ -117,6 +117,12 @@ export default function AdminPage() {
     fetchAll();
   };
 
+  const deleteActivity = async (id) => {
+    if (!confirm('Delete this activity?')) return;
+    await fetch(`/api/activities/${id}`, { method: 'DELETE' });
+    fetchAll();
+  };
+
   // ─── LOGIN SCREEN ───
   if (!authed) {
     return (
@@ -385,7 +391,7 @@ export default function AdminPage() {
                     <div className="w-3 h-3 rounded-full bg-accent border-2 border-bg-primary ring-4 ring-accent-dim flex-shrink-0" />
                     {i < activities.length - 1 && <div className="w-px flex-1 bg-border mt-1" />}
                   </div>
-                  <div className="flex-1 pb-4">
+                  <div className="flex-1 pb-4 pr-10 relative group/item">
                     <p className="font-mono text-[11px] text-text-muted mb-1">{a.date}</p>
                     <h4 className="text-sm font-semibold mb-1">{a.title}</h4>
                     <p className="text-sm text-text-secondary">{a.description}</p>
@@ -394,6 +400,10 @@ export default function AdminPage() {
                         <span key={j} className="px-2 py-0.5 bg-bg-secondary border border-border rounded text-[10px] font-mono text-text-muted">{t}</span>
                       ))}
                     </div>
+                    <button onClick={() => deleteActivity(a.id)} 
+                      className="absolute top-0 right-0 p-2 text-text-muted hover:text-accent-red opacity-0 group-hover/item:opacity-100 transition-all">
+                      <Trash2 size={14} />
+                    </button>
                   </div>
                 </div>
               ))}
