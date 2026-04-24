@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useReveal } from './Reveal';
 
 export default function TerminalEntry({ activity, index, isLast }) {
-  const [ref, visible] = useReveal(0.3);
+  const [ref, visible] = useReveal(0.05); // Trigger almost immediately
   const [typedTitle, setTypedTitle] = useState('');
   const [showContent, setShowContent] = useState(false);
 
@@ -17,9 +17,9 @@ export default function TerminalEntry({ activity, index, isLast }) {
 
       if (currentIndex >= activity.title.length) {
         clearInterval(intervalId);
-        setTimeout(() => setShowContent(true), 150);
+        setTimeout(() => setShowContent(true), 50); // Faster content reveal
       }
-    }, 20); // Fast typing speed
+    }, 15); // Increased typing speed
 
     return () => clearInterval(intervalId);
   }, [visible, activity.title]);
