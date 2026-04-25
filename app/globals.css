@@ -239,6 +239,151 @@ h1, h2, h3, .font-serif {
   100% { border-color: rgba(226, 192, 109, 0.3); box-shadow: 0 0 20px rgba(226, 192, 109, 0.05); }
 }
 
+/* --- Shine sweep on hover --- */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+.shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -80%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,0.06), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.shine:hover::after { left: 150%; }
+
+/* --- Gradient border card --- */
+.gradient-card {
+  background: linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+              linear-gradient(135deg, rgba(80,200,120,0.25), rgba(226,192,109,0.1), rgba(93,176,255,0.15)) border-box;
+  border: 1px solid transparent;
+  transition: background 0.35s ease, transform 0.35s cubic-bezier(0.23,1,0.32,1), box-shadow 0.35s ease;
+}
+.gradient-card:hover {
+  background: linear-gradient(var(--bg-card-hover), var(--bg-card-hover)) padding-box,
+              linear-gradient(135deg, rgba(80,200,120,0.5), rgba(226,192,109,0.25), rgba(93,176,255,0.3)) border-box;
+  transform: translateY(-5px);
+  box-shadow: 0 24px 60px -12px rgba(0,0,0,0.5), 0 0 40px rgba(80,200,120,0.06);
+}
+
+/* --- Neon text glow --- */
+.neon-glow {
+  text-shadow: 0 0 20px rgba(80,200,120,0.5), 0 0 40px rgba(80,200,120,0.2);
+}
+.neon-glow-gold {
+  text-shadow: 0 0 20px rgba(226,192,109,0.5), 0 0 40px rgba(226,192,109,0.2);
+}
+
+/* --- Pulsing availability badge --- */
+@keyframes badge-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(80,200,120,0.5); }
+  70% { box-shadow: 0 0 0 7px rgba(80,200,120,0); }
+  100% { box-shadow: 0 0 0 0 rgba(80,200,120,0); }
+}
+.badge-pulse { animation: badge-pulse 2.2s ease-out infinite; }
+
+/* --- Floating orb glow --- */
+@keyframes orb-drift {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(15px,-20px) scale(1.05); }
+  66% { transform: translate(-10px,10px) scale(0.98); }
+}
+.orb-drift { animation: orb-drift 12s ease-in-out infinite; }
+
+@keyframes orb-drift-2 {
+  0%,100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-20px,15px) scale(1.08); }
+}
+.orb-drift-2 { animation: orb-drift-2 16s ease-in-out infinite; }
+
+/* --- Dot grid pattern --- */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(45,70,56,0.5) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* --- Stat card glow --- */
+.stat-cell {
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+.stat-cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(80,200,120,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.stat-cell:hover::before { opacity: 1; }
+
+/* --- Tech card color glow --- */
+.tech-card {
+  transition: transform 0.3s cubic-bezier(0.23,1,0.32,1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.tech-card:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* --- Project card header gradient BI --- */
+.proj-header-bi {
+  background: linear-gradient(135deg, #1a1600 0%, #1a1200 40%, #0d1508 100%);
+}
+.proj-header-bi .proj-icon {
+  background: rgba(242,200,17,0.12);
+  color: #F2C811;
+}
+
+/* --- Project card header gradient Data --- */
+.proj-header-data {
+  background: linear-gradient(135deg, #0a1a0e 0%, #071310 40%, #0a1210 100%);
+}
+.proj-header-data .proj-icon {
+  background: rgba(80,200,120,0.12);
+  color: #50c878;
+}
+
+/* --- Floating label inputs --- */
+.float-label {
+  position: relative;
+}
+.float-label label {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  font-size: 14px;
+  pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.23,1,0.32,1);
+  background: var(--bg-card);
+  padding: 0 4px;
+}
+.float-label input:focus + label,
+.float-label input:not(:placeholder-shown) + label,
+.float-label textarea:focus + label,
+.float-label textarea:not(:placeholder-shown) + label {
+  top: 0;
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* --- Glow ring keyframe --- */
+@keyframes glow-ring {
+  0% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.05); }
+  100% { opacity: 0.3; transform: scale(1); }
+}
+
 /* --- Responsive typography --- */
 @media (max-width: 768px) {
   html { font-size: 15px; }

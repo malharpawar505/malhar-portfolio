@@ -34,6 +34,14 @@ const AI_EXPERIMENTS = [
   { title: 'AI Data Quality Monitor', desc: 'AI-driven data reconciliation and validation that learns patterns and flags pipeline anomalies.', icon: Database },
 ];
 
+const CAT_COLORS = {
+  BI: 'rgba(242,200,17,',
+  Data: 'rgba(80,200,120,',
+  Cloud: 'rgba(93,176,255,',
+  AI: 'rgba(255,107,107,',
+  Tools: 'rgba(139,148,158,',
+};
+
 import Magnetic from '@/components/Magnetic';
 import FloatingLogos from '@/components/FloatingLogos';
 import Typewriter from '@/components/Typewriter';
@@ -60,8 +68,19 @@ export default function HomePage() {
 
   return (
     <div className="page-enter">
+
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
+      <section className="relative min-h-[92vh] flex items-center pt-20 overflow-hidden">
+        {/* Ambient orbs */}
+        <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] rounded-full bg-accent/5 blur-[120px] orb-drift pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] rounded-full bg-accent-gold/4 blur-[100px] orb-drift-2 pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-accent-blue/3 blur-[140px] pointer-events-none" />
+
+        {/* Decorative large letters */}
+        <div className="absolute right-8 top-1/2 -translate-y-1/2 text-[22vw] font-extrabold font-serif italic text-white/[0.025] select-none pointer-events-none leading-none tracking-tighter">
+          MP
+        </div>
+
         {/* Background effects */}
         <div className="absolute inset-0 z-0">
           <FloatingLogos />
@@ -71,7 +90,7 @@ export default function HomePage() {
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full py-12">
           <Reveal delay={1}>
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-accent-dim border border-accent/20 font-mono text-xs text-accent font-medium tracking-wide mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-accent badge-pulse flex-shrink-0" />
               Open to opportunities · Data Engineering & AI
             </div>
           </Reveal>
@@ -86,21 +105,21 @@ export default function HomePage() {
 
           <Reveal delay={3}>
             <p className="text-xl text-text-secondary max-w-xl leading-relaxed mb-12 font-medium">
-              I'm <span className="text-text-primary">Malhar Pawar</span> — an Analytics Architect building high-performance data platforms and AI-powered intelligence.
+              I'm <span className="text-text-primary font-semibold">Malhar Pawar</span> — an Analytics Architect building high-performance data platforms and AI-powered intelligence.
             </p>
           </Reveal>
 
           <Reveal delay={4}>
-            <div className="flex flex-wrap gap-6 mb-16">
+            <div className="flex flex-wrap gap-4 mb-16">
               <Magnetic strength={0.2}>
                 <Link href="/projects"
-                  className="btn-ripple inline-flex items-center gap-2 px-8 py-4 bg-accent text-bg-primary font-bold text-sm rounded-xl transition-all duration-300">
+                  className="btn-ripple shine inline-flex items-center gap-2 px-8 py-4 bg-accent text-bg-primary font-bold text-sm rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(80,200,120,0.35)]">
                   View My Work <ChevronRight size={16} />
                 </Link>
               </Magnetic>
               <Magnetic strength={0.2}>
                 <Link href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 border border-border rounded-xl text-sm font-semibold hover:border-accent hover:text-accent transition-all duration-300">
+                  className="inline-flex items-center gap-2 px-8 py-4 border border-border rounded-xl text-sm font-semibold hover:border-accent/60 hover:text-accent hover:bg-accent/5 transition-all duration-300">
                   <Mail size={16} /> Get In Touch
                 </Link>
               </Magnetic>
@@ -108,15 +127,15 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={5}>
-            <div className="grid grid-cols-2 sm:grid-cols-4 border border-border rounded-2xl overflow-hidden">
+            <div className="grid grid-cols-2 sm:grid-cols-4 rounded-2xl overflow-hidden border border-border/60" style={{ background: 'linear-gradient(135deg, rgba(18,24,21,0.9), rgba(13,17,15,0.9))' }}>
               {[
                 { n: 12, s: '+', label: 'Projects Delivered', gold: false },
                 { n: 15, s: '+', label: 'Technologies', gold: true },
                 { n: 2, s: '+', label: 'Years Experience', gold: false },
                 { n: 1, s: '', label: 'Certifications', gold: true },
               ].map((stat, i) => (
-                <div key={i} className="p-6 sm:p-7 bg-bg-card text-center hover:bg-bg-card-hover transition-colors border-r border-b border-border last:border-r-0 sm:[&:nth-child(n+3)]:border-b-0 [&:nth-child(even)]:border-r-0 sm:[&:nth-child(even)]:border-r sm:[&:nth-child(4)]:border-r-0">
-                  <div className={`font-mono text-3xl sm:text-4xl font-bold mb-1 ${stat.gold ? 'text-accent-gold' : 'text-accent'}`}>
+                <div key={i} className="stat-cell p-6 sm:p-7 text-center border-r border-b border-border/40 last:border-r-0 [&:nth-child(even)]:border-r-0 sm:[&:nth-child(even)]:border-r sm:[&:nth-child(4)]:border-r-0 sm:[&:nth-child(n+3)]:border-b-0">
+                  <div className={`font-mono text-3xl sm:text-4xl font-bold mb-1.5 ${stat.gold ? 'text-accent-gold neon-glow-gold' : 'text-accent neon-glow'}`}>
                     <AnimatedCounter target={stat.n} suffix={stat.s} />
                   </div>
                   <div className="text-[11px] text-text-muted uppercase tracking-widest font-semibold">{stat.label}</div>
@@ -128,7 +147,8 @@ export default function HomePage() {
       </section>
 
       {/* ═══ ABOUT ═══ */}
-      <section className="py-24 sm:py-32">
+      <section className="py-24 sm:py-32 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent-gold/3 rounded-full blur-[100px] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-5 sm:px-8">
           <Reveal>
             <div className="mb-14">
@@ -143,22 +163,33 @@ export default function HomePage() {
             <Reveal type="left" delay={2}>
               <div className="space-y-5 text-[15px] text-text-secondary leading-relaxed">
                 <p>Based in Pune, India, I work at the intersection of data engineering, business intelligence, and artificial intelligence. With hands-on experience building enterprise analytics platforms for the QSR and finance industries, I specialize in transforming complex data ecosystems into actionable intelligence.</p>
-                <p>My current focus is on integrating Large Language Models with BI platforms through Model Context Protocol (MCP) servers — building AI copilots that let business users query data using natural language. I hold a <span className="text-accent-gold font-medium">Microsoft Fabric Analytics Engineer Associate</span> certification.</p>
+                <p>My current focus is on integrating Large Language Models with BI platforms through Model Context Protocol (MCP) servers — building AI copilots that let business users query data using natural language. I hold a <span className="text-accent-gold font-semibold">Microsoft Fabric Analytics Engineer Associate</span> certification.</p>
                 <p>I believe the future of analytics is conversational, automated, and deeply integrated with AI. Every project I build moves toward that vision.</p>
+
+                <div className="flex gap-3 pt-2">
+                  <a href="https://github.com/malharpawar505" target="_blank" rel="noreferrer"
+                    className="shine flex items-center gap-2 px-5 py-3 border border-border rounded-xl text-sm font-medium hover:border-text-muted hover:bg-bg-card transition-all">
+                    <Github size={15} /> GitHub
+                  </a>
+                  <a href="https://www.linkedin.com/in/malharpawar505/" target="_blank" rel="noreferrer"
+                    className="shine flex items-center gap-2 px-5 py-3 border border-border rounded-xl text-sm font-medium hover:border-text-muted hover:bg-bg-card transition-all">
+                    <Linkedin size={15} /> LinkedIn
+                  </a>
+                </div>
               </div>
             </Reveal>
 
             <Reveal type="right" delay={3}>
-              <div className="space-y-5">
-                {/* Code block */}
-                <div className="p-6 bg-bg-card border border-border rounded-2xl overflow-hidden">
+              <div className="space-y-4">
+                <div className="gradient-card p-6 rounded-2xl overflow-hidden relative">
+                  <div className="absolute -top-12 -right-12 w-32 h-32 bg-accent/5 rounded-full blur-3xl" />
                   <div className="flex items-center gap-2 mb-4">
                     <span className="w-3 h-3 rounded-full bg-accent-red/60" />
                     <span className="w-3 h-3 rounded-full bg-accent-gold/60" />
                     <span className="w-3 h-3 rounded-full bg-accent/60" />
                     <span className="ml-3 font-mono text-[11px] text-text-muted">current_focus.json</span>
                   </div>
-                  <Typewriter 
+                  <Typewriter
                     delay={1.5}
                     speed={15}
                     codeString={`{
@@ -167,19 +198,22 @@ export default function HomePage() {
   "location": "Pune, India",
   "cert": "Fabric Analytics Engineer",
   "building": "LLM-powered BI copilots"
-}`} 
+}`}
                   />
                 </div>
-                {/* Social links */}
-                <div className="flex gap-3">
-                  <a href="https://github.com/malharpawar505" target="_blank" rel="noreferrer"
-                    className="flex items-center gap-2 px-5 py-3 border border-border rounded-xl text-sm font-medium hover:border-text-secondary hover:bg-bg-card transition-all">
-                    <Github size={16} /> GitHub
-                  </a>
-                  <a href="https://www.linkedin.com/in/malharpawar505/" target="_blank" rel="noreferrer"
-                    className="flex items-center gap-2 px-5 py-3 border border-border rounded-xl text-sm font-medium hover:border-text-secondary hover:bg-bg-card transition-all">
-                    <Linkedin size={16} /> LinkedIn
-                  </a>
+
+                {/* Cert badge */}
+                <div className="flex items-center gap-4 p-5 rounded-2xl border border-accent-gold/20 bg-accent-gold/5">
+                  <div className="w-10 h-10 rounded-xl bg-accent-gold/15 flex items-center justify-center text-accent-gold flex-shrink-0">
+                    <Award size={20} />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-accent-gold">Microsoft Certified</div>
+                    <div className="text-xs text-text-muted">Fabric Analytics Engineer Associate</div>
+                  </div>
+                  <div className="ml-auto">
+                    <span className="px-2.5 py-1 bg-accent-gold/10 text-accent-gold text-[10px] font-mono font-semibold rounded-full">DP-600</span>
+                  </div>
                 </div>
               </div>
             </Reveal>
@@ -188,8 +222,11 @@ export default function HomePage() {
       </section>
 
       {/* ═══ SKILLS ═══ */}
-      <section className="py-24 sm:py-32 bg-bg-secondary">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8">
+      <section className="py-24 sm:py-32 bg-bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 dot-grid opacity-40 pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-accent/4 blur-[80px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
           <Reveal>
             <p className="font-mono text-xs text-accent font-semibold tracking-widest uppercase mb-4 flex items-center gap-3">
               <span className="w-6 h-px bg-accent" /> Tech Stack
@@ -197,30 +234,35 @@ export default function HomePage() {
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">My Technical Arsenal</h2>
             <p className="text-text-secondary max-w-lg mb-12">Tools and technologies I use daily to build data platforms and intelligence systems.</p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {TECHNOLOGIES.map((tech, i) => (
-              <Reveal key={i} type="scale" delay={Math.min((i % 8) + 1, 8)}>
-                <div className="card-hover flex items-center gap-3 px-4 py-4 bg-bg-card border border-border rounded-xl text-sm font-medium cursor-default group relative overflow-hidden">
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300" style={{ backgroundColor: tech.color }} />
-                  <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={{ color: tech.color }}>
-                    {tech.LucideIcon ? (
-                      <tech.LucideIcon size={20} strokeWidth={1.5} />
-                    ) : (
-                      <img src={tech.icon} alt={tech.name} className="w-full h-full object-contain filter drop-shadow-sm" />
-                    )}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+            {TECHNOLOGIES.map((tech, i) => {
+              const colorBase = CAT_COLORS[tech.cat] || 'rgba(80,200,120,';
+              return (
+                <Reveal key={i} type="scale" delay={Math.min((i % 8) + 1, 8)}>
+                  <div className="tech-card shine flex items-center gap-3 px-4 py-4 bg-bg-card border border-border rounded-xl text-sm font-medium cursor-default group relative overflow-hidden">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{ background: `radial-gradient(ellipse 80% 80% at 0% 100%, ${colorBase}0.07), transparent)` }} />
+                    <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-5deg]" style={{ color: tech.color }}>
+                      {tech.LucideIcon ? (
+                        <tech.LucideIcon size={20} strokeWidth={1.5} />
+                      ) : (
+                        <img src={tech.icon} alt={tech.name} className="w-full h-full object-contain" />
+                      )}
+                    </div>
+                    <span className="flex-1 truncate relative z-10 group-hover:text-text-primary transition-colors">{tech.name}</span>
+                    <span className="text-[9px] text-text-muted/60 font-mono relative z-10 border border-border/40 px-1.5 py-0.5 rounded">{tech.cat}</span>
                   </div>
-                  <span className="flex-1 truncate relative z-10">{tech.name}</span>
-                  <span className="text-[10px] text-text-muted font-mono relative z-10">{tech.cat}</span>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ═══ FEATURED PROJECTS ═══ */}
-      <section className="py-24 sm:py-32">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8">
+      <section className="py-24 sm:py-32 relative overflow-hidden">
+        <div className="absolute top-1/2 -right-40 w-[500px] h-[500px] bg-accent/4 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
           <Reveal>
             <p className="font-mono text-xs text-accent font-semibold tracking-widest uppercase mb-4 flex items-center gap-3">
               <span className="w-6 h-px bg-accent" /> Featured Work
@@ -231,39 +273,58 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
             {loading ? [1,2,3].map(i => (
-              <div key={i} className="h-[380px] rounded-2xl shimmer" />
-            )) : projects.map((p, i) => (
-              <Reveal key={p.id} delay={i + 1}>
-                <Link href={`/projects/${p.id}`} className="block card-hover bg-bg-card border border-border rounded-2xl overflow-hidden group">
-                  <div className="h-48 bg-gradient-to-br from-bg-secondary to-bg-card-hover relative overflow-hidden flex items-center justify-center">
-                    <div className="absolute inset-0 opacity-10"
-                      style={{ backgroundImage: 'radial-gradient(circle at 25% 75%, var(--accent) 1px, transparent 1px), radial-gradient(circle at 75% 25%, var(--accent-gold) 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
-                    <div className="w-14 h-14 rounded-2xl bg-accent-dim flex items-center justify-center text-accent z-10 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
-                      {p.category === 'BI' ? <BarChart3 size={24} /> : <Database size={24} />}
+              <div key={i} className="h-[400px] rounded-2xl shimmer" />
+            )) : projects.map((p, i) => {
+              const isBI = p.category === 'BI';
+              return (
+                <Reveal key={p.id} delay={i + 1}>
+                  <Link href={`/projects/${p.id}`} className="block shine bg-bg-card border border-border rounded-2xl overflow-hidden group card-hover h-full">
+                    {/* Header with category-specific gradient */}
+                    <div className={`h-48 relative overflow-hidden flex items-center justify-center ${isBI ? 'proj-header-bi' : 'proj-header-data'}`}>
+                      <div className="absolute inset-0 dot-grid opacity-20" />
+                      <div className={`absolute inset-0 transition-opacity duration-500 group-hover:opacity-100 opacity-0`}
+                        style={{ background: isBI ? 'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(242,200,17,0.08), transparent)' : 'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(80,200,120,0.08), transparent)' }} />
+                      <div className={`proj-icon w-14 h-14 rounded-2xl flex items-center justify-center z-10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
+                        {isBI ? <BarChart3 size={24} /> : <Database size={24} />}
+                      </div>
+                      {/* Number badge */}
+                      <div className="absolute top-4 right-4 font-mono text-[11px] font-bold text-text-muted/40">
+                        {String(i + 1).padStart(2, '0')}
+                      </div>
                     </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="flex gap-2 flex-wrap mb-3">
-                      <span className="tag-green px-2.5 py-1 rounded-full text-[11px] font-semibold">{p.category}</span>
-                      <span className="tag-gold px-2.5 py-1 rounded-full text-[11px] font-semibold">{p.industry}</span>
+
+                    <div className="p-6">
+                      <div className="flex gap-2 flex-wrap mb-3">
+                        <span className={`px-2.5 py-1 rounded-full text-[11px] font-semibold ${isBI ? 'tag-gold' : 'tag-green'}`}>{p.category}</span>
+                        <span className="tag-blue px-2.5 py-1 rounded-full text-[11px] font-semibold">{p.industry}</span>
+                      </div>
+                      <h3 className="text-base font-bold mb-2 leading-snug group-hover:text-accent transition-colors duration-300 line-clamp-2">{p.title}</h3>
+                      <p className="text-sm text-text-secondary leading-relaxed line-clamp-2 mb-4">{p.problem}</p>
+                      <div className="flex gap-1.5 flex-wrap mb-4">
+                        {p.tools?.slice(0, 3).map((t, j) => (
+                          <span key={j} className="px-2.5 py-1 bg-bg-secondary border border-border rounded text-[11px] font-mono text-text-muted">{t}</span>
+                        ))}
+                        {p.tools?.length > 3 && (
+                          <span className="px-2.5 py-1 bg-bg-secondary border border-border rounded text-[11px] font-mono text-text-muted">+{p.tools.length - 3}</span>
+                        )}
+                      </div>
+                      <div className="flex items-center justify-between pt-3 border-t border-border/40">
+                        <span className="text-[11px] text-text-muted font-mono">{p.timeline}</span>
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent group-hover:gap-2 transition-all duration-300">
+                          View Case Study <ArrowUpRight size={12} />
+                        </span>
+                      </div>
                     </div>
-                    <h3 className="text-lg font-bold mb-2 leading-snug group-hover:text-accent transition-colors duration-300">{p.title}</h3>
-                    <p className="text-sm text-text-secondary leading-relaxed line-clamp-2 mb-4">{p.problem}</p>
-                    <div className="flex gap-1.5 flex-wrap">
-                      {p.tools?.slice(0, 4).map((t, j) => (
-                        <span key={j} className="px-2.5 py-1 bg-bg-secondary border border-border rounded text-[11px] font-mono text-text-muted">{t}</span>
-                      ))}
-                    </div>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
+                  </Link>
+                </Reveal>
+              );
+            })}
           </div>
 
           <Reveal>
             <div className="text-center mt-12">
               <Link href="/projects"
-                className="inline-flex items-center gap-2 px-7 py-3 border border-border rounded-xl text-sm font-semibold hover:border-accent hover:text-accent transition-all duration-300">
+                className="shine inline-flex items-center gap-2 px-7 py-3 border border-border rounded-xl text-sm font-semibold hover:border-accent/60 hover:text-accent transition-all duration-300">
                 View All Projects <ChevronRight size={16} />
               </Link>
             </div>
@@ -272,8 +333,10 @@ export default function HomePage() {
       </section>
 
       {/* ═══ AI EXPERIMENTS ═══ */}
-      <section className="py-24 sm:py-32 bg-bg-secondary">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8">
+      <section className="py-24 sm:py-32 bg-bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-accent-gold/4 rounded-full blur-[100px] pointer-events-none orb-drift" />
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
           <Reveal>
             <p className="font-mono text-xs text-accent-gold font-semibold tracking-widest uppercase mb-4 flex items-center gap-3">
               <span className="w-6 h-px bg-accent-gold" /> AI & Innovation
@@ -287,13 +350,13 @@ export default function HomePage() {
               const Icon = exp.icon;
               return (
                 <Reveal key={i} type="scale" delay={i + 1}>
-                  <div className="card-hover p-7 bg-bg-card border border-border rounded-2xl relative overflow-hidden group animate-[aiGlow_4s_ease-in-out_infinite_alternate]">
-                    <div className="absolute -top-20 -right-20 w-48 h-48 bg-accent-gold/5 rounded-full blur-3xl group-hover:bg-accent-gold/8 transition-all duration-500" />
+                  <div className="gradient-card shine p-7 rounded-2xl relative overflow-hidden group">
+                    <div className="absolute -top-24 -right-24 w-56 h-56 bg-accent-gold/6 rounded-full blur-3xl group-hover:bg-accent-gold/10 transition-all duration-700" />
                     <div className="relative z-10">
-                      <div className="w-12 h-12 rounded-xl bg-accent-gold-dim flex items-center justify-center text-accent-gold mb-5 transition-transform duration-300 group-hover:scale-110">
+                      <div className="w-12 h-12 rounded-xl bg-accent-gold/12 flex items-center justify-center text-accent-gold mb-5 transition-all duration-300 group-hover:scale-110 group-hover:bg-accent-gold/20">
                         <Icon size={22} />
                       </div>
-                      <h3 className="text-lg font-bold mb-2">{exp.title}</h3>
+                      <h3 className="text-base font-bold mb-2">{exp.title}</h3>
                       <p className="text-sm text-text-secondary leading-relaxed">{exp.desc}</p>
                     </div>
                   </div>
@@ -305,7 +368,7 @@ export default function HomePage() {
           <Reveal>
             <div className="text-center mt-10">
               <Link href="/ai-lab"
-                className="inline-flex items-center gap-2 px-7 py-3 border border-border rounded-xl text-sm font-semibold hover:border-accent-gold hover:text-accent-gold transition-all duration-300">
+                className="shine inline-flex items-center gap-2 px-7 py-3 border border-border rounded-xl text-sm font-semibold hover:border-accent-gold/50 hover:text-accent-gold transition-all duration-300">
                 Explore AI Lab <ChevronRight size={16} />
               </Link>
             </div>
@@ -314,8 +377,9 @@ export default function HomePage() {
       </section>
 
       {/* ═══ ACTIVITY FEED ═══ */}
-      <section className="py-24 sm:py-32">
-        <div className="max-w-3xl mx-auto px-5 sm:px-8">
+      <section className="py-24 sm:py-32 relative overflow-hidden">
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-accent/4 rounded-full blur-[80px] pointer-events-none" />
+        <div className="max-w-3xl mx-auto px-5 sm:px-8 relative z-10">
           <Reveal>
             <p className="font-mono text-xs text-accent font-semibold tracking-widest uppercase mb-4 flex items-center gap-3">
               <span className="w-6 h-px bg-accent" /> Activity Feed
@@ -333,8 +397,9 @@ export default function HomePage() {
       </section>
 
       {/* ═══ BLOG PREVIEW ═══ */}
-      <section className="py-24 sm:py-32 bg-bg-secondary">
-        <div className="max-w-7xl mx-auto px-5 sm:px-8">
+      <section className="py-24 sm:py-32 bg-bg-secondary relative overflow-hidden">
+        <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
           <Reveal>
             <p className="font-mono text-xs text-accent font-semibold tracking-widest uppercase mb-4 flex items-center gap-3">
               <span className="w-6 h-px bg-accent" /> Blog & Insights
@@ -346,18 +411,17 @@ export default function HomePage() {
             {blogs.map((b, i) => (
               <Reveal key={b.id} delay={i + 1}>
                 <a href={b.link} target="_blank" rel="noopener noreferrer" className="block h-full">
-                <div className="card-hover p-7 bg-bg-card border border-border rounded-2xl cursor-pointer group h-full">
-                  <div className="flex items-center gap-3 mb-4 text-xs text-text-muted">
-                    <span className="font-medium">{b.category}</span>
-                    <span className="w-1 h-1 rounded-full bg-text-muted" />
-                    <span>{b.date}</span>
+                  <div className="shine gradient-card p-7 rounded-2xl cursor-pointer group h-full">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="px-2.5 py-1 bg-accent-dim text-accent text-[10px] font-mono font-semibold rounded-full">{b.category}</span>
+                      <span className="text-xs text-text-muted">{b.date}</span>
+                    </div>
+                    <h3 className="text-base font-bold mb-2 leading-snug group-hover:text-accent transition-colors">{b.title}</h3>
+                    <p className="text-sm text-text-secondary leading-relaxed line-clamp-2 mb-5 flex-1">{b.excerpt}</p>
+                    <span className="inline-flex items-center gap-1.5 text-xs text-accent font-semibold group-hover:gap-2.5 transition-all duration-300">
+                      {b.link?.includes('medium.com') ? 'Read on Medium' : 'Read on LinkedIn'} <ArrowUpRight size={13} />
+                    </span>
                   </div>
-                  <h3 className="text-lg font-bold mb-2 leading-snug group-hover:text-accent transition-colors">{b.title}</h3>
-                  <p className="text-sm text-text-secondary leading-relaxed line-clamp-2 mb-4">{b.excerpt}</p>
-                  <span className="inline-flex items-center gap-1.5 text-xs text-accent font-semibold group-hover:gap-2.5 transition-all duration-300">
-                    {b.link?.includes('medium.com') ? 'Read on Medium' : 'Read on LinkedIn'} <ArrowUpRight size={13} />
-                  </span>
-                </div>
                 </a>
               </Reveal>
             ))}
@@ -366,7 +430,7 @@ export default function HomePage() {
           <Reveal>
             <div className="text-center mt-10">
               <Link href="/blog"
-                className="inline-flex items-center gap-2 px-7 py-3 border border-border rounded-xl text-sm font-semibold hover:border-accent hover:text-accent transition-all duration-300">
+                className="shine inline-flex items-center gap-2 px-7 py-3 border border-border rounded-xl text-sm font-semibold hover:border-accent/60 hover:text-accent transition-all duration-300">
                 All Articles <ChevronRight size={16} />
               </Link>
             </div>
@@ -375,17 +439,33 @@ export default function HomePage() {
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="py-24 sm:py-32">
-        <div className="max-w-3xl mx-auto px-5 sm:px-8 text-center">
+      <section className="py-24 sm:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-[600px] h-[300px] bg-accent/5 rounded-full blur-[100px] orb-drift" />
+        </div>
+        <div className="max-w-3xl mx-auto px-5 sm:px-8 text-center relative z-10">
           <Reveal>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-5">Let's Build Something Together</h2>
-            <p className="text-text-secondary mb-10 max-w-lg mx-auto leading-relaxed">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent/20 bg-accent/5 font-mono text-[11px] text-accent mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent badge-pulse" />
+              Available for new opportunities
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6 leading-tight">
+              Let's Build Something{' '}
+              <span className="gradient-text">Together</span>
+            </h2>
+            <p className="text-text-secondary mb-10 max-w-lg mx-auto leading-relaxed text-lg">
               Looking for a data engineer who thinks in systems, builds with purpose, and experiments with AI? Let's talk.
             </p>
-            <Link href="/contact"
-              className="btn-ripple inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-accent to-emerald-600 text-bg-primary font-bold text-sm rounded-xl hover:-translate-y-0.5 hover:shadow-[0_8px_30px_rgba(80,200,120,0.3)] transition-all duration-300">
-              <Mail size={16} /> Start a Conversation
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/contact"
+                className="btn-ripple shine inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-accent to-emerald-600 text-bg-primary font-bold text-sm rounded-xl hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(80,200,120,0.35)] transition-all duration-300">
+                <Mail size={16} /> Start a Conversation
+              </Link>
+              <Link href="/projects"
+                className="shine inline-flex items-center justify-center gap-2 px-10 py-4 border border-border rounded-xl text-sm font-semibold hover:border-accent/60 hover:text-accent transition-all duration-300">
+                See My Work <ChevronRight size={16} />
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>
