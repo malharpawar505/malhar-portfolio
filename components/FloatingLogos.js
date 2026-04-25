@@ -54,21 +54,21 @@ function InteractiveLogo({ logo, index, mouseX, mouseY }) {
   return (
     <motion.div
       id={`logo-${index}`}
-      className="absolute w-12 h-12 md:w-16 md:h-16"
+      className="absolute w-24 h-24 md:w-40 md:h-40"
       style={{ top: logo.top, left: logo.left, x: xOffset, y: yOffset }}
       initial={{ opacity: 0 }}
-      animate={{ opacity: [0.3, 0.8, 0.3], rotate: [0, 5, -5, 0] }}
+      animate={{ opacity: [0.4, 0.9, 0.4], rotate: [0, 8, -8, 0], scale: [1, 1.05, 0.95, 1] }}
       transition={{
-        duration: 8 + (index % 3) * 2,
+        duration: 10 + (index % 3) * 3,
         repeat: Infinity,
         ease: "easeInOut",
         delay: logo.delay
       }}
     >
       <motion.div
-        animate={{ y: [0, -15, 0] }}
+        animate={{ y: [0, -30, 0] }}
         transition={{
-          duration: 4 + (index % 3),
+          duration: 6 + (index % 3) * 2,
           repeat: Infinity,
           ease: "easeInOut",
           delay: logo.delay
@@ -78,7 +78,7 @@ function InteractiveLogo({ logo, index, mouseX, mouseY }) {
         <img 
           src={logo.src} 
           alt={logo.name} 
-          className="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(255,255,255,0.15)] transition-all" 
+          className="w-full h-full object-contain filter drop-shadow-[0_0_25px_rgba(255,255,255,0.25)] transition-all grayscale hover:grayscale-0" 
         />
       </motion.div>
     </motion.div>
@@ -95,7 +95,7 @@ export default function FloatingLogos() {
   }, []);
 
   return (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-30">
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
       {logos.map((logo, index) => (
         <InteractiveLogo key={index} logo={logo} index={index} mouseX={mousePos.x} mouseY={mousePos.y} />
       ))}
