@@ -23,8 +23,9 @@ export const metadata = {
   robots: { index: true, follow: true },
 };
 
+import dynamic from 'next/dynamic';
 import MouseTrailer from '@/components/MouseTrailer';
-import AntigravityBackground from '@/components/AntigravityBackground';
+const AntigravityBackground = dynamic(() => import('@/components/AntigravityBackground'), { ssr: false });
 
 export default function RootLayout({ children }) {
   return (

@@ -3,7 +3,10 @@ export const dynamic = 'force-dynamic';
 import { readCollection, addItem } from '@/lib/db';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Lazy init — avoids crash at build time when env var is missing
+function getResend() {
+  return new Resend(process.env.RESEND_API_KEY || '');
+}
 
 export async function GET() {
   const data = await readCollection('messages');
@@ -30,7 +33,7 @@ export async function POST(request) {
   // 2. Send Email Notification via Resend
   try {
     if (process.env.RESEND_API_KEY) {
-      await resend.emails.send({
+      await getResend().emails.send({
         from: 'Portfolio Contact <onboarding@resend.dev>',
         to: 'pawarmalhar505@gmail.com',
         subject: `New Message from ${name} via Portfolio`,
