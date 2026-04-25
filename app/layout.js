@@ -24,13 +24,14 @@ export const metadata = {
 };
 
 import MouseTrailer from '@/components/MouseTrailer';
+import AntigravityBackground from '@/components/AntigravityBackground';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <body className="min-h-screen flex flex-col overflow-x-hidden">
         <MouseTrailer />
-        <div className="mesh-bg" />
+        <AntigravityBackground />
         <Navbar />
         <main className="flex-1">
           {children}

@@ -36,7 +36,6 @@ const AI_EXPERIMENTS = [
 
 import Magnetic from '@/components/Magnetic';
 import FloatingLogos from '@/components/FloatingLogos';
-import AnalyticsBackground from '@/components/AnalyticsBackground';
 import Typewriter from '@/components/Typewriter';
 import TerminalEntry from '@/components/TerminalEntry';
 
@@ -65,12 +64,8 @@ export default function HomePage() {
       <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden">
         {/* Background effects */}
         <div className="absolute inset-0 z-0">
-          <AnalyticsBackground />
           <FloatingLogos />
           <div className="absolute inset-0 bg-grid opacity-30" style={{ maskImage: 'radial-gradient(ellipse 70% 50% at 50% 50%, black, transparent)' }} />
-          <div className="absolute inset-0" style={{
-            background: 'radial-gradient(ellipse 80% 60% at 15% 50%, rgba(80,200,120,0.06) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 85% 20%, rgba(201,168,76,0.04) 0%, transparent 50%)'
-          }} />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 w-full py-12">
