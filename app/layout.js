@@ -23,16 +23,13 @@ export const metadata = {
   robots: { index: true, follow: true },
 };
 
-import dynamic from 'next/dynamic';
-import MouseTrailer from '@/components/MouseTrailer';
-const AntigravityBackground = dynamic(() => import('@/components/AntigravityBackground'), { ssr: false });
+import ClientShell from '@/components/ClientShell';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="scroll-smooth">
       <body className="min-h-screen flex flex-col overflow-x-hidden">
-        <MouseTrailer />
-        <AntigravityBackground />
+        <ClientShell />
         <Navbar />
         <main className="flex-1">
           {children}
