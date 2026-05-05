@@ -132,7 +132,7 @@ export default function HomePage() {
                 { n: 12, s: '+', label: 'Projects Delivered', gold: false },
                 { n: 15, s: '+', label: 'Technologies', gold: true },
                 { n: 2, s: '+', label: 'Years Experience', gold: false },
-                { n: 1, s: '', label: 'Certifications', gold: true },
+                { n: 2, s: '', label: 'Certifications', gold: true },
               ].map((stat, i) => (
                 <div key={i} className="stat-cell p-6 sm:p-7 text-center border-r border-b border-border/40 last:border-r-0 [&:nth-child(even)]:border-r-0 sm:[&:nth-child(even)]:border-r sm:[&:nth-child(4)]:border-r-0 sm:[&:nth-child(n+3)]:border-b-0">
                   <div className={`font-mono text-3xl sm:text-4xl font-bold mb-1.5 ${stat.gold ? 'text-accent-gold neon-glow-gold' : 'text-accent neon-glow'}`}>
@@ -163,7 +163,7 @@ export default function HomePage() {
             <Reveal type="left" delay={2}>
               <div className="space-y-5 text-[15px] text-text-secondary leading-relaxed">
                 <p>Based in Pune, India, I work at the intersection of data engineering, business intelligence, and artificial intelligence. With hands-on experience building enterprise analytics platforms for the QSR and finance industries, I specialize in transforming complex data ecosystems into actionable intelligence.</p>
-                <p>My current focus is on integrating Large Language Models with BI platforms through Model Context Protocol (MCP) servers — building AI copilots that let business users query data using natural language. I hold a <span className="text-accent-gold font-semibold">Microsoft Fabric Analytics Engineer Associate</span> certification.</p>
+                <p>My current focus is on integrating Large Language Models with BI platforms through Model Context Protocol (MCP) servers — building AI copilots that let business users query data using natural language. I hold the <span className="text-accent-gold font-semibold">Microsoft Fabric Analytics Engineer Associate</span> and <span className="text-accent-gold font-semibold">Microsoft Fabric Data Engineer Associate</span> certifications.</p>
                 <p>I believe the future of analytics is conversational, automated, and deeply integrated with AI. Every project I build moves toward that vision.</p>
 
                 <div className="flex gap-3 pt-2">
@@ -196,13 +196,16 @@ export default function HomePage() {
   "role": "Analytics Engineer",
   "company": "Prosys Infotech",
   "location": "Pune, India",
-  "cert": "Fabric Analytics Engineer",
+  "certs": [
+    "Fabric Analytics Engineer",
+    "Fabric Data Engineer"
+  ],
   "building": "LLM-powered BI copilots"
 }`}
                   />
                 </div>
 
-                {/* Cert badge */}
+                {/* Cert badges */}
                 <div className="flex items-center gap-4 p-5 rounded-2xl border border-accent-gold/20 bg-accent-gold/5">
                   <div className="w-10 h-10 rounded-xl bg-accent-gold/15 flex items-center justify-center text-accent-gold flex-shrink-0">
                     <Award size={20} />
@@ -213,6 +216,18 @@ export default function HomePage() {
                   </div>
                   <div className="ml-auto">
                     <span className="px-2.5 py-1 bg-accent-gold/10 text-accent-gold text-[10px] font-mono font-semibold rounded-full">DP-600</span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4 p-5 rounded-2xl border border-accent-blue/20 bg-accent-blue/5">
+                  <div className="w-10 h-10 rounded-xl bg-accent-blue/15 flex items-center justify-center text-accent-blue flex-shrink-0">
+                    <Award size={20} />
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-accent-blue">Microsoft Certified</div>
+                    <div className="text-xs text-text-muted">Fabric Data Engineer Associate</div>
+                  </div>
+                  <div className="ml-auto">
+                    <span className="px-2.5 py-1 bg-accent-blue/10 text-accent-blue text-[10px] font-mono font-semibold rounded-full">DP-700</span>
                   </div>
                 </div>
               </div>
