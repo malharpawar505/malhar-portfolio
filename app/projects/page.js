@@ -2,15 +2,16 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Reveal } from '@/components/Reveal';
-import { Search, BarChart3, Database, ArrowUpRight } from 'lucide-react';
+import { Search, BarChart3, Database, ArrowUpRight, Cpu, ChevronDown } from 'lucide-react';
 
-const CATEGORIES = ['All', 'BI', 'Data Engineering'];
+const CATEGORIES = ['All', 'BI', 'Data Engineering', 'AI'];
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState([]);
   const [filter, setFilter] = useState('All');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
+  const [expandedId, setExpandedId] = useState(null);
 
   useEffect(() => {
     fetch('/api/projects')
@@ -95,21 +96,34 @@ export default function ProjectsPage() {
           <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
             {filtered.map((p, i) => {
               const isBI = p.category === 'BI';
+              const isAI = p.category === 'AI';
+              const isExpanded = expandedId === p.id;
+              
+              const bgGradient = isAI 
+                ? 'radial-gradient(ellipse 70% 90% at 50% 100%, rgba(147,51,234,0.1), transparent)'
+                : isBI 
+                  ? 'radial-gradient(ellipse 70% 90% at 50% 100%, rgba(242,200,17,0.1), transparent)'
+                  : 'radial-gradient(ellipse 70% 90% at 50% 100%, rgba(80,200,120,0.1), transparent)';
+              
+              const badgeClass = isAI
+                ? 'bg-purple-500/15 text-purple-400'
+                : isBI 
+                  ? 'bg-accent-gold/15 text-accent-gold' 
+                  : 'bg-accent/15 text-accent';
+
               return (
                 <Reveal key={p.id} type="scale" delay={Math.min(i + 1, 6)}>
-                  <Link href={`/projects/${p.id}`} className="block shine bg-bg-card border border-border rounded-2xl overflow-hidden group card-hover h-full">
+                  <div className={`relative flex flex-col bg-bg-card border ${isExpanded ? 'border-accent shadow-[0_8px_30px_rgba(80,200,120,0.15)]' : 'border-border'} rounded-2xl overflow-hidden group card-hover h-full transition-all duration-300 hover:shadow-[0_8px_30px_rgba(80,200,120,0.15)] hover:border-accent/50`}>
                     {/* Header */}
-                    <div className={`h-44 relative overflow-hidden flex items-center justify-center ${isBI ? 'proj-header-bi' : 'proj-header-data'}`}>
+                    <div className="h-44 relative overflow-hidden flex items-center justify-center bg-bg-secondary/50">
                       <div className="absolute inset-0 dot-grid opacity-25" />
-                      <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
-                        style={{ background: isBI
-                          ? 'radial-gradient(ellipse 70% 90% at 50% 100%, rgba(242,200,17,0.1), transparent)'
-                          : 'radial-gradient(ellipse 70% 90% at 50% 100%, rgba(80,200,120,0.1), transparent)' }} />
+                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{ background: bgGradient }} />
                       <div className="proj-icon w-14 h-14 rounded-2xl flex items-center justify-center z-10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
-                        {isBI ? <BarChart3 size={24} /> : <Database size={24} />}
+                        {isAI ? <Cpu size={24} /> : isBI ? <BarChart3 size={24} /> : <Database size={24} />}
                       </div>
                       <div className="absolute top-4 left-4">
-                        <span className={`px-2.5 py-1 rounded-full text-[10px] font-mono font-bold ${isBI ? 'bg-accent-gold/15 text-accent-gold' : 'bg-accent/15 text-accent'}`}>
+                        <span className={`px-2.5 py-1 rounded-full text-[10px] font-mono font-bold ${badgeClass}`}>
                           {p.category}
                         </span>
                       </div>
@@ -118,32 +132,47 @@ export default function ProjectsPage() {
                       </div>
                     </div>
 
-                    <div className="p-6 flex flex-col h-[calc(100%-176px)]">
-                      <div className="flex gap-2 flex-wrap mb-3">
-                        <span className="tag-blue px-2.5 py-1 rounded-full text-[11px] font-semibold">{p.industry}</span>
-                        <span className="tag-gold px-2.5 py-1 rounded-full text-[11px] font-semibold">{p.timeline}</span>
-                      </div>
-                      <h3 className="text-base font-bold mb-2 leading-snug group-hover:text-accent transition-colors duration-300 line-clamp-2">{p.title}</h3>
-                      <p className="text-sm text-text-secondary leading-relaxed line-clamp-2 mb-4 flex-1">{p.problem}</p>
-                      <div className="flex gap-1.5 flex-wrap mb-4">
-                        {p.tools?.slice(0, 3).map((t, j) => (
+                    <div className="p-6 flex flex-col flex-1">
+                      <h3 className="text-xl font-bold mb-2 leading-snug group-hover:text-accent transition-colors duration-300">{p.title}</h3>
+                      <p className="text-sm text-text-secondary leading-relaxed mb-4 flex-1">{p.description}</p>
+                      
+                      <div className="flex gap-1.5 flex-wrap mb-5">
+                        {p.tools?.map((t, j) => (
                           <span key={j} className="px-2.5 py-1 bg-bg-secondary border border-border rounded text-[11px] font-mono text-text-muted">{t}</span>
                         ))}
-                        {p.tools?.length > 3 && (
-                          <span className="px-2.5 py-1 bg-bg-secondary border border-border rounded text-[11px] font-mono text-text-muted">+{p.tools.length - 3}</span>
-                        )}
                       </div>
-                      <div className="flex items-center justify-between pt-3 border-t border-border/40 mt-auto">
-                        <span className="flex items-center gap-1.5 text-[11px] text-text-muted font-mono">
-                          <span className="w-1.5 h-1.5 rounded-full bg-accent/60" />
-                          {p.status}
-                        </span>
-                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-accent group-hover:gap-2 transition-all duration-300">
-                          View Details <ArrowUpRight size={12} />
-                        </span>
+
+                      {p.impactMetric && (
+                        <div className="mb-5 p-3 rounded-lg bg-accent/5 border border-accent/20">
+                          <p className="text-sm font-semibold text-accent flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+                            {p.impactMetric}
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="mt-auto pt-4 border-t border-border/40">
+                        <button 
+                          onClick={(e) => { e.preventDefault(); setExpandedId(isExpanded ? null : p.id); }}
+                          className="flex items-center justify-between w-full text-sm font-semibold text-text-primary hover:text-accent transition-colors duration-200"
+                        >
+                          Impact & Outcome
+                          <ChevronDown size={16} className={`transition-transform duration-300 ${isExpanded ? 'rotate-180 text-accent' : ''}`} />
+                        </button>
+                        
+                        <div className={`overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-[500px] mt-4 opacity-100' : 'max-h-0 opacity-0'}`}>
+                          <p className="text-sm text-text-secondary leading-relaxed p-4 bg-bg-secondary/50 rounded-lg border border-border mb-4">
+                            {p.impactOutcome}
+                          </p>
+                          <div className="flex justify-end">
+                            <Link href={`/projects/${p.id}`} className="inline-flex items-center gap-2 text-xs font-semibold text-accent hover:underline">
+                              View Full Case Study <ArrowUpRight size={14} />
+                            </Link>
+                          </div>
+                        </div>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 </Reveal>
               );
             })}

@@ -22,7 +22,7 @@ export const metadata = {
   },
   robots: { index: true, follow: true },
   icons: {
-    icon: '/favicon.ico',
+    icon: '/favicon.ico?v=2',
   },
 };
 
