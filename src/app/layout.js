@@ -16,6 +16,9 @@ export const metadata = {
     description: 'Building intelligent data systems that drive decisions.',
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }) {

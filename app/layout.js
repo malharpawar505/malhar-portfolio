@@ -21,6 +21,9 @@ export const metadata = {
     creator: '@malharpawar505',
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 import ClientShell from '@/components/ClientShell';
