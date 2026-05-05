@@ -33,21 +33,24 @@ export function Reveal({ children, className = '', type = 'up', delay = 0 }) {
 
 export function AnimatedCounter({ target, suffix = '' }) {
   const [count, setCount] = useState(0);
-  const [ref, visible] = useReveal(0.5);
+  const [ref, visible] = useReveal(0.1);
+  const hasRun = useRef(false);
 
   useEffect(() => {
-    if (!visible) return;
-    let start = 0;
+    if (!visible || hasRun.current) return;
+    hasRun.current = true;
+    let startTs = 0;
     const dur = 1800;
     const step = (ts) => {
-      if (!start) start = ts;
-      const progress = Math.min((ts - start) / dur, 1);
+      if (!startTs) startTs = ts;
+      const progress = Math.min((ts - startTs) / dur, 1);
       const ease = 1 - Math.pow(1 - progress, 4);
       setCount(Math.floor(ease * target));
       if (progress < 1) requestAnimationFrame(step);
+      else setCount(target);
     };
     requestAnimationFrame(step);
   }, [visible, target]);
 
-  return <span ref={ref}>{count}{suffix}</span>;
+  return <div ref={ref} style={{ display: 'inline' }}>{count}{suffix}</div>;
 }

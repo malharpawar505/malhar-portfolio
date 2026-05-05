@@ -176,11 +176,11 @@ export default function AntigravityBackground() {
         <Stars 
           radius={120} 
           depth={60} 
-          count={5000} 
+          count={6000} 
           factor={6} 
           saturation={0} 
           fade 
-          speed={0.8} 
+          speed={2.5} 
         />
         
         <CinematicFog />

@@ -46,6 +46,7 @@ import Magnetic from '@/components/Magnetic';
 import FloatingLogos from '@/components/FloatingLogos';
 import Typewriter from '@/components/Typewriter';
 import TerminalEntry from '@/components/TerminalEntry';
+import HeroTypewriter from '@/components/HeroTypewriter';
 
 export default function HomePage() {
   const [projects, setProjects] = useState([]);
@@ -97,9 +98,11 @@ export default function HomePage() {
 
           <Reveal delay={2}>
             <h1 className="text-[clamp(2.8rem,7vw,5.5rem)] font-extrabold leading-[1.0] tracking-tighter max-w-5xl mb-8 font-serif italic">
-              Building{' '}
-              <span className="gradient-text not-italic">Intelligent Data Systems</span>
-              {' '}That Drive Decisions
+              <HeroTypewriter
+                text="Building Intelligent Data Systems That Drive Decisions"
+                speed={38}
+                delay={600}
+              />
             </h1>
           </Reveal>
 
@@ -113,7 +116,7 @@ export default function HomePage() {
             <div className="flex flex-wrap gap-4 mb-16">
               <Magnetic strength={0.2}>
                 <Link href="/projects"
-                  className="btn-ripple shine inline-flex items-center gap-2 px-8 py-4 bg-accent text-bg-primary font-bold text-sm rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(80,200,120,0.35)]">
+                  className="btn-ripple btn-cta-pulse shine inline-flex items-center gap-2 px-8 py-4 bg-accent text-bg-primary font-bold text-sm rounded-xl transition-all duration-300 hover:-translate-y-0.5">
                   View My Work <ChevronRight size={16} />
                 </Link>
               </Magnetic>
@@ -473,7 +476,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact"
-                className="btn-ripple shine inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-accent to-emerald-600 text-bg-primary font-bold text-sm rounded-xl hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(80,200,120,0.35)] transition-all duration-300">
+                className="btn-ripple btn-cta-pulse shine inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-accent to-emerald-600 text-bg-primary font-bold text-sm rounded-xl hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(80,200,120,0.35)] transition-all duration-300">
                 <Mail size={16} /> Start a Conversation
               </Link>
               <Link href="/projects"

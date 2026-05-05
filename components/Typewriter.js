@@ -53,6 +53,9 @@ export default function Typewriter({ codeString, delay = 0, speed = 30 }) {
       {hasStarted && displayedText.length < codeString.length && (
         <span className="inline-block w-2 h-3.5 bg-accent/80 animate-pulse ml-1 align-middle" />
       )}
+      {hasStarted && displayedText.length >= codeString.length && (
+        <span className="hero-cursor" aria-hidden="true">_</span>
+      )}
     </pre>
   );
 }
