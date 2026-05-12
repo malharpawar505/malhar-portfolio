@@ -109,7 +109,7 @@ export default function HomeClient({ projects, blogs, activities }) {
                 className="grid grid-cols-2 sm:grid-cols-4 gap-[1px] rounded-[var(--radius)] overflow-hidden border border-[var(--border)] stats-grid-4"
               >
                 {[
-                  { n: 12, s: '+', label: 'Projects', gold: false },
+                  { n: 12, s: '+', label: 'Projects Completed', gold: false },
                   { n: 15, s: '+', label: 'Technologies', gold: true },
                   { n: 2, s: '+', label: 'Years Exp.', gold: false },
                   { n: 1, s: '', label: 'Certs', gold: true },
