@@ -17,32 +17,50 @@ export async function POST(request) {
   const projects = getSeedData('projects');
   const results = [];
 
+  // Ensure columns exist for new fields
+  const alterCols = [
+    ['description', 'TEXT'],
+    ['impact_metric', 'TEXT'],
+    ['impact_outcome', 'TEXT'],
+  ];
+  for (const [col, type] of alterCols) {
+    try {
+      await sql`SELECT ${sql(col)} FROM projects LIMIT 0`;
+    } catch {
+      try { await sql`ALTER TABLE projects ADD COLUMN ${sql(col)} ${sql(type)}`; } catch {}
+    }
+  }
+
   for (const p of projects) {
     const id = parseInt(p.id);
     try {
       await sql`
-        INSERT INTO projects (id, title, industry, category, status, problem, architecture, tools, modeling, pipeline, dashboards, insights, timeline, tags)
+        INSERT INTO projects (id, title, industry, category, status, problem, architecture, tools, modeling, pipeline, dashboards, insights, timeline, tags, description, impact_metric, impact_outcome)
         VALUES (
-          ${id}, ${p.title}, ${p.industry}, ${p.category}, ${p.status},
-          ${p.problem}, ${p.architecture}, ${JSON.stringify(p.tools)}::jsonb,
-          ${p.modeling}, ${p.pipeline}, ${p.dashboards}, ${p.insights},
-          ${p.timeline}, ${JSON.stringify(p.tags)}::jsonb
+          ${id}, ${p.title}, ${p.industry || ''}, ${p.category}, ${p.status},
+          ${p.problem || ''}, ${p.architecture || ''}, ${JSON.stringify(p.tools || [])}::jsonb,
+          ${p.modeling || ''}, ${p.pipeline || ''}, ${p.dashboards || ''}, ${p.insights || ''},
+          ${p.timeline || ''}, ${JSON.stringify(p.tags || [])}::jsonb,
+          ${p.description || ''}, ${p.impactMetric || ''}, ${p.impactOutcome || ''}
         )
         ON CONFLICT (id) DO UPDATE SET
-          title        = EXCLUDED.title,
-          industry     = EXCLUDED.industry,
-          category     = EXCLUDED.category,
-          status       = EXCLUDED.status,
-          problem      = EXCLUDED.problem,
-          architecture = EXCLUDED.architecture,
-          tools        = EXCLUDED.tools,
-          modeling     = EXCLUDED.modeling,
-          pipeline     = EXCLUDED.pipeline,
-          dashboards   = EXCLUDED.dashboards,
-          insights     = EXCLUDED.insights,
-          timeline     = EXCLUDED.timeline,
-          tags         = EXCLUDED.tags,
-          updated_at   = NOW()
+          title          = EXCLUDED.title,
+          industry       = EXCLUDED.industry,
+          category       = EXCLUDED.category,
+          status         = EXCLUDED.status,
+          problem        = EXCLUDED.problem,
+          architecture   = EXCLUDED.architecture,
+          tools          = EXCLUDED.tools,
+          modeling       = EXCLUDED.modeling,
+          pipeline       = EXCLUDED.pipeline,
+          dashboards     = EXCLUDED.dashboards,
+          insights       = EXCLUDED.insights,
+          timeline       = EXCLUDED.timeline,
+          tags           = EXCLUDED.tags,
+          description    = EXCLUDED.description,
+          impact_metric  = EXCLUDED.impact_metric,
+          impact_outcome = EXCLUDED.impact_outcome,
+          updated_at     = NOW()
       `;
       results.push({ id, title: p.title, action: 'upserted' });
     } catch (err) {
