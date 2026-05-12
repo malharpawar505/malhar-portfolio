@@ -1,6 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    './src/app/**/*.{js,jsx}',
+    './src/components/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
     './components/**/*.{js,jsx}',
   ],
@@ -23,12 +25,12 @@ module.exports = {
           muted: '#5a7a68',
         },
         accent: {
-          DEFAULT: '#50c878',
-          dim: 'rgba(80, 200, 120, 0.15)',
+          DEFAULT: '#48bb6c',
+          dim: 'rgba(72, 187, 108, 0.12)',
           gold: '#c9a84c',
-          'gold-dim': 'rgba(201, 168, 76, 0.15)',
+          'gold-dim': 'rgba(201, 168, 76, 0.12)',
           blue: '#4a9eff',
-          red: '#ff6b6b',
+          red: '#ef6461',
         },
       },
       fontFamily: {
@@ -84,7 +86,7 @@ module.exports = {
           '100%': { backgroundPosition: '0% 50%' },
         },
         typingCursor: {
-          '0%, 100%': { borderColor: '#50c878' },
+          '0%, 100%': { borderColor: '#48bb6c' },
           '50%': { borderColor: 'transparent' },
         },
         bounceSubtle: {
