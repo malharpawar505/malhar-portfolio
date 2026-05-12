@@ -54,6 +54,25 @@ export default function AdminPage() {
   const [np, setNp] = useState({ title: '', industry: '', category: 'BI', problem: '', architecture: '', tools: '', modeling: '', pipeline: '', dashboards: '', insights: '', timeline: '', tags: '', status: 'draft' });
   const [nb, setNb] = useState({ title: '', category: '', excerpt: '', status: 'draft' });
   const [na, setNa] = useState({ title: '', description: '', tags: '' });
+  const [seedStatus, setSeedStatus] = useState(null);
+
+  const syncSeedData = async () => {
+    setSeedStatus('syncing');
+    try {
+      const res = await fetch('/api/seed', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: ADMIN_PASS }),
+      });
+      const data = await res.json();
+      setSeedStatus(`Synced ${data.synced || 0} projects`);
+      fetchAll();
+      setTimeout(() => setSeedStatus(null), 4000);
+    } catch {
+      setSeedStatus('Error syncing');
+      setTimeout(() => setSeedStatus(null), 4000);
+    }
+  };
 
   const fetchAll = () => {
     setLoading(true);
@@ -248,6 +267,11 @@ export default function AdminPage() {
                 <button onClick={() => { setTab('activity'); setModal('activity'); }}
                   className="inline-flex items-center gap-2 px-5 py-2.5 border border-border rounded-xl text-sm font-semibold hover:bg-bg-card-hover transition-colors">
                   <Plus size={15} /> Log Activity
+                </button>
+                <button onClick={syncSeedData} disabled={seedStatus === 'syncing'}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 border border-accent-gold/40 bg-accent-gold/10 rounded-xl text-sm font-semibold text-accent-gold hover:bg-accent-gold/20 transition-colors disabled:opacity-50">
+                  <Settings size={15} className={seedStatus === 'syncing' ? 'animate-spin' : ''} />
+                  {seedStatus === 'syncing' ? 'Syncing...' : seedStatus || 'Sync Seed Data'}
                 </button>
               </div>
             </div>
@@ -452,6 +476,7 @@ export default function AdminPage() {
                   className="w-full px-4 py-3 bg-bg-secondary border border-border rounded-xl text-sm input-focus">
                   <option value="BI">BI</option>
                   <option value="Data Engineering">Data Engineering</option>
+                  <option value="AI">AI</option>
                 </select>
               </div>
               <div>
