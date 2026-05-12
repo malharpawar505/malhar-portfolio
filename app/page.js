@@ -132,7 +132,7 @@ export default function HomePage() {
           <Reveal delay={5}>
             <div className="grid grid-cols-2 sm:grid-cols-4 rounded-2xl overflow-hidden border border-border/60" style={{ background: 'linear-gradient(135deg, rgba(18,24,21,0.9), rgba(13,17,15,0.9))' }}>
               {[
-                { n: 12, s: '+', label: 'Projects Completed', gold: false },
+                { n: 18, s: '+', label: 'Projects Completed', gold: false },
                 { n: 15, s: '+', label: 'Technologies', gold: true },
                 { n: 2, s: '+', label: 'Years Experience', gold: false },
                 { n: 2, s: '', label: 'Certifications', gold: true },
