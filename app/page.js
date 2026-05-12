@@ -252,28 +252,60 @@ export default function HomePage() {
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">My Technical Arsenal</h2>
             <p className="text-text-secondary max-w-lg mb-12">Tools and technologies I use daily to build data platforms and intelligence systems.</p>
           </Reveal>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {TECHNOLOGIES.map((tech, i) => {
-              const colorBase = CAT_COLORS[tech.cat] || 'rgba(80,200,120,';
-              return (
-                <Reveal key={i} type="scale" delay={Math.min((i % 8) + 1, 8)}>
-                  <div className="tech-card shine flex items-center gap-3 px-4 py-4 bg-bg-card border border-border rounded-xl text-sm font-medium cursor-default group relative overflow-hidden">
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{ background: `radial-gradient(ellipse 80% 80% at 0% 100%, ${colorBase}0.07), transparent)` }} />
-                    <div className="w-6 h-6 flex-shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-5deg]" style={{ color: tech.color }}>
-                      {tech.LucideIcon ? (
-                        <tech.LucideIcon size={20} strokeWidth={1.5} />
-                      ) : (
-                        <img src={tech.icon} alt={tech.name} className="w-full h-full object-contain" />
-                      )}
-                    </div>
-                    <span className="flex-1 truncate relative z-10 group-hover:text-text-primary transition-colors">{tech.name}</span>
-                    <span className="text-[9px] text-text-muted/60 font-mono relative z-10 border border-border/40 px-1.5 py-0.5 rounded">{tech.cat}</span>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
+
+          {(() => {
+            const CAT_META = {
+              BI:    { label: 'Business Intelligence', color: '#e2c06d', rgb: '226,192,109' },
+              Data:  { label: 'Data Engineering',      color: '#50c878', rgb: '80,200,120'  },
+              Cloud: { label: 'Cloud & Infrastructure', color: '#5db0ff', rgb: '93,176,255' },
+              AI:    { label: 'AI & LLMs',              color: '#ff7676', rgb: '255,118,118'},
+              Tools: { label: 'Tools & Practices',      color: '#8b949e', rgb: '139,148,158'},
+            };
+            const order = ['BI', 'Data', 'Cloud', 'AI', 'Tools'];
+            const grouped = TECHNOLOGIES.reduce((acc, t) => {
+              (acc[t.cat] = acc[t.cat] || []).push(t);
+              return acc;
+            }, {});
+            return (
+              <div className="space-y-10">
+                {order.filter(cat => grouped[cat]).map((cat, gi) => {
+                  const meta = CAT_META[cat];
+                  const techs = grouped[cat];
+                  return (
+                    <Reveal key={cat} delay={gi + 1}>
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: meta.color, boxShadow: `0 0 8px rgba(${meta.rgb},0.6)` }} />
+                        <span className="font-mono text-[11px] font-semibold uppercase tracking-[2px]" style={{ color: meta.color }}>{meta.label}</span>
+                        <span className="flex-1 h-px" style={{ background: `rgba(${meta.rgb},0.15)` }} />
+                      </div>
+                      <div className="flex flex-wrap gap-2.5">
+                        {techs.map((tech, i) => {
+                          const colorBase = CAT_COLORS[tech.cat] || 'rgba(80,200,120,';
+                          return (
+                            <div key={i}
+                              className="tech-card shine flex items-center gap-2.5 px-3.5 py-2.5 border rounded-xl text-sm font-medium cursor-default group relative overflow-hidden"
+                              style={{ background: `rgba(${meta.rgb},0.06)`, borderColor: `rgba(${meta.rgb},0.18)` }}
+                            >
+                              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                style={{ background: `radial-gradient(ellipse 80% 80% at 0% 100%, ${colorBase}0.1), transparent)` }} />
+                              <div className="w-5 h-5 flex-shrink-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 relative z-10" style={{ color: tech.color }}>
+                                {tech.LucideIcon ? (
+                                  <tech.LucideIcon size={18} strokeWidth={1.5} />
+                                ) : (
+                                  <img src={tech.icon} alt={tech.name} className="w-full h-full object-contain" />
+                                )}
+                              </div>
+                              <span className="relative z-10 text-text-primary group-hover:text-white transition-colors whitespace-nowrap">{tech.name}</span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            );
+          })()}
         </div>
       </section>
 
