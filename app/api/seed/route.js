@@ -14,22 +14,17 @@ export async function POST(request) {
     return NextResponse.json({ message: 'No DB connected — seed data is used automatically' });
   }
 
+  // Ensure new columns exist
+  try {
+    await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS description TEXT DEFAULT ''`;
+    await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS impact_metric TEXT DEFAULT ''`;
+    await sql`ALTER TABLE projects ADD COLUMN IF NOT EXISTS impact_outcome TEXT DEFAULT ''`;
+  } catch (e) {
+    // columns may already exist, continue
+  }
+
   const projects = getSeedData('projects');
   const results = [];
-
-  // Ensure columns exist for new fields
-  const alterCols = [
-    ['description', 'TEXT'],
-    ['impact_metric', 'TEXT'],
-    ['impact_outcome', 'TEXT'],
-  ];
-  for (const [col, type] of alterCols) {
-    try {
-      await sql`SELECT ${sql(col)} FROM projects LIMIT 0`;
-    } catch {
-      try { await sql`ALTER TABLE projects ADD COLUMN ${sql(col)} ${sql(type)}`; } catch {}
-    }
-  }
 
   for (const p of projects) {
     const id = parseInt(p.id);
@@ -69,7 +64,9 @@ export async function POST(request) {
   }
 
   // Keep BIGSERIAL sequence ahead of manually-inserted IDs
-  await sql`SELECT setval('projects_id_seq', GREATEST((SELECT MAX(id) FROM projects), ${projects.length}))`;
+  try {
+    await sql`SELECT setval('projects_id_seq', GREATEST((SELECT MAX(id) FROM projects), ${projects.length}))`;
+  } catch {}
 
   return NextResponse.json({ success: true, synced: results.length, results });
 }
