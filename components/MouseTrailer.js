@@ -48,7 +48,7 @@ export default function MouseTrailer() {
         }}
         animate={{
           scale: isHovering ? 2.5 : 1,
-          backgroundColor: isHovering ? 'rgba(80, 200, 120, 0.1)' : 'rgba(80, 200, 120, 0)',
+          backgroundColor: isHovering ? 'rgba(16, 185, 129, 0.1)' : 'rgba(16, 185, 129, 0)',
         }}
         transition={{ type: 'spring', stiffness: 250, damping: 25 }}
       />

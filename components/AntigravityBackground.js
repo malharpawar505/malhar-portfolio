@@ -7,7 +7,7 @@ import * as THREE from 'three';
 
 // Custom hook to get CSS variables
 function useCSSVariable(variableName) {
-  const [value, setValue] = useState('#50c878'); // Default accent color
+  const [value, setValue] = useState('#10b981');
 
   useEffect(() => {
     const val = getComputedStyle(document.documentElement).getPropertyValue(variableName).trim();

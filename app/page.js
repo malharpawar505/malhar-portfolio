@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 
 const TECHNOLOGIES = [
   { name: 'Power BI', color: '#F2C811', cat: 'BI', LucideIcon: BarChart3 },
-  { name: 'SQL', color: '#50c878', cat: 'Data', icon: 'https://cdn.simpleicons.org/postgresql/50c878' },
+  { name: 'SQL', color: '#10b981', cat: 'Data', icon: 'https://cdn.simpleicons.org/postgresql/10b981' },
   { name: 'Python', color: '#3776ab', cat: 'Data', icon: 'https://cdn.simpleicons.org/python/3776ab' },
   { name: 'DAX', color: '#F2C811', cat: 'BI', LucideIcon: Calculator },
   { name: 'Microsoft Fabric', color: '#4a9eff', cat: 'Cloud', LucideIcon: Layers },
@@ -18,13 +18,13 @@ const TECHNOLOGIES = [
   { name: 'Azure Data Factory', color: '#0078d4', cat: 'Cloud', LucideIcon: Factory },
   { name: 'Snowflake', color: '#29b5e8', cat: 'Cloud', icon: 'https://cdn.simpleicons.org/snowflake/29b5e8' },
   { name: 'Azure DevOps', color: '#0078d4', cat: 'Cloud', LucideIcon: GitMerge },
-  { name: 'ETL / ELT', color: '#50c878', cat: 'Data', icon: 'https://cdn.simpleicons.org/databricks/50c878' },
-  { name: 'Data Modeling', color: '#c9a84c', cat: 'Data', icon: 'https://cdn.simpleicons.org/prisma/c9a84c' },
-  { name: 'Data Warehouse', color: '#c9a84c', cat: 'Data', LucideIcon: Database },
-  { name: 'LLM / AI', color: '#ff6b6b', cat: 'AI', LucideIcon: Brain },
-  { name: 'MCP Servers', color: '#ff6b6b', cat: 'AI', icon: 'https://cdn.simpleicons.org/anthropic/ff6b6b' },
-  { name: 'Medallion Architecture', color: '#50c878', cat: 'Data', icon: 'https://cdn.simpleicons.org/apachespark/50c878' },
-  { name: 'Git & GitHub', color: '#8b949e', cat: 'Tools', icon: 'https://cdn.simpleicons.org/github/8b949e' },
+  { name: 'ETL / ELT', color: '#10b981', cat: 'Data', icon: 'https://cdn.simpleicons.org/databricks/10b981' },
+  { name: 'Data Modeling', color: '#f59e0b', cat: 'Data', icon: 'https://cdn.simpleicons.org/prisma/f59e0b' },
+  { name: 'Data Warehouse', color: '#f59e0b', cat: 'Data', LucideIcon: Database },
+  { name: 'LLM / AI', color: '#8b5cf6', cat: 'AI', LucideIcon: Brain },
+  { name: 'MCP Servers', color: '#8b5cf6', cat: 'AI', icon: 'https://cdn.simpleicons.org/anthropic/8b5cf6' },
+  { name: 'Medallion Architecture', color: '#10b981', cat: 'Data', icon: 'https://cdn.simpleicons.org/apachespark/10b981' },
+  { name: 'Git & GitHub', color: '#94a3b8', cat: 'Tools', icon: 'https://cdn.simpleicons.org/github/94a3b8' },
 ];
 
 const AI_EXPERIMENTS = [
@@ -35,11 +35,11 @@ const AI_EXPERIMENTS = [
 ];
 
 const CAT_COLORS = {
-  BI: 'rgba(242,200,17,',
-  Data: 'rgba(80,200,120,',
-  Cloud: 'rgba(93,176,255,',
-  AI: 'rgba(255,107,107,',
-  Tools: 'rgba(139,148,158,',
+  BI: 'rgba(245,158,11,',
+  Data: 'rgba(16,185,129,',
+  Cloud: 'rgba(59,130,246,',
+  AI: 'rgba(139,92,246,',
+  Tools: 'rgba(148,163,184,',
 };
 
 import Magnetic from '@/components/Magnetic';
@@ -77,11 +77,6 @@ export default function HomePage() {
         <div className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] rounded-full bg-accent-gold/4 blur-[100px] orb-drift-2 pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-accent-blue/3 blur-[140px] pointer-events-none" />
 
-        {/* Decorative large letters */}
-        <div className="absolute right-8 top-1/2 -translate-y-1/2 text-[22vw] font-extrabold font-serif italic text-white/[0.025] select-none pointer-events-none leading-none tracking-tighter">
-          MP
-        </div>
-
         {/* Background effects */}
         <div className="absolute inset-0 z-0">
           <FloatingLogos />
@@ -97,7 +92,7 @@ export default function HomePage() {
           </Reveal>
 
           <Reveal delay={2}>
-            <h1 className="text-[clamp(2.8rem,7vw,5.5rem)] font-extrabold leading-[1.0] tracking-tighter max-w-5xl mb-8 font-serif italic">
+            <h1 className="text-[clamp(2.8rem,7vw,5.2rem)] font-extrabold leading-[1.05] tracking-tight max-w-4xl mb-8">
               <HeroTypewriter
                 text="Building Intelligent Data Systems That Drive Decisions"
                 speed={38}
@@ -255,11 +250,11 @@ export default function HomePage() {
 
           {(() => {
             const CAT_META = {
-              BI:    { label: 'Business Intelligence', color: '#e2c06d', rgb: '226,192,109' },
-              Data:  { label: 'Data Engineering',      color: '#50c878', rgb: '80,200,120'  },
-              Cloud: { label: 'Cloud & Infrastructure', color: '#5db0ff', rgb: '93,176,255' },
-              AI:    { label: 'AI & LLMs',              color: '#ff7676', rgb: '255,118,118'},
-              Tools: { label: 'Tools & Practices',      color: '#8b949e', rgb: '139,148,158'},
+              BI:    { label: 'Business Intelligence', color: '#f59e0b', rgb: '245,158,11' },
+              Data:  { label: 'Data Engineering',      color: '#10b981', rgb: '16,185,129'  },
+              Cloud: { label: 'Cloud & Infrastructure', color: '#3b82f6', rgb: '59,130,246' },
+              AI:    { label: 'AI & LLMs',              color: '#8b5cf6', rgb: '139,92,246'},
+              Tools: { label: 'Tools & Practices',      color: '#94a3b8', rgb: '148,163,184'},
             };
             const order = ['BI', 'Data', 'Cloud', 'AI', 'Tools'];
             const grouped = TECHNOLOGIES.reduce((acc, t) => {
@@ -280,7 +275,7 @@ export default function HomePage() {
                       </div>
                       <div className="flex flex-wrap gap-2.5">
                         {techs.map((tech, i) => {
-                          const colorBase = CAT_COLORS[tech.cat] || 'rgba(80,200,120,';
+                          const colorBase = CAT_COLORS[tech.cat] || 'rgba(16,185,129,';
                           return (
                             <div key={i}
                               className="tech-card shine flex items-center gap-2.5 px-3.5 py-2.5 border rounded-xl text-sm font-medium cursor-default group relative overflow-hidden"
@@ -333,7 +328,7 @@ export default function HomePage() {
                     <div className={`h-48 relative overflow-hidden flex items-center justify-center ${isBI ? 'proj-header-bi' : 'proj-header-data'}`}>
                       <div className="absolute inset-0 dot-grid opacity-20" />
                       <div className={`absolute inset-0 transition-opacity duration-500 group-hover:opacity-100 opacity-0`}
-                        style={{ background: isBI ? 'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(242,200,17,0.08), transparent)' : 'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(80,200,120,0.08), transparent)' }} />
+                        style={{ background: isBI ? 'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(245,158,11,0.08), transparent)' : 'radial-gradient(ellipse 60% 80% at 50% 100%, rgba(16,185,129,0.08), transparent)' }} />
                       <div className={`proj-icon w-14 h-14 rounded-2xl flex items-center justify-center z-10 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3`}>
                         {isBI ? <BarChart3 size={24} /> : <Database size={24} />}
                       </div>
@@ -508,7 +503,7 @@ export default function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact"
-                className="btn-ripple btn-cta-pulse shine inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-accent to-emerald-600 text-bg-primary font-bold text-sm rounded-xl hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(80,200,120,0.35)] transition-all duration-300">
+                className="btn-ripple btn-cta-pulse shine inline-flex items-center justify-center gap-2 px-10 py-4 bg-gradient-to-r from-accent to-emerald-400 text-bg-primary font-bold text-sm rounded-xl hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(16,185,129,0.35)] transition-all duration-300">
                 <Mail size={16} /> Start a Conversation
               </Link>
               <Link href="/projects"

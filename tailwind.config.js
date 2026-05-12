@@ -8,33 +8,33 @@ module.exports = {
     extend: {
       colors: {
         bg: {
-          primary: '#0a0f0d',
-          secondary: '#111916',
-          card: '#151d19',
-          'card-hover': '#1a2420',
+          primary: '#07070d',
+          secondary: '#0c0c15',
+          card: '#12121d',
+          'card-hover': '#191928',
         },
         border: {
-          DEFAULT: 'rgba(45, 70, 56, 0.4)',
-          accent: 'rgba(80, 200, 120, 0.25)',
+          DEFAULT: 'rgba(148, 163, 184, 0.08)',
+          accent: 'rgba(16, 185, 129, 0.3)',
         },
         text: {
-          primary: '#e8efe9',
-          secondary: '#8ba89a',
-          muted: '#5a7a68',
+          primary: '#e2e8f0',
+          secondary: '#94a3b8',
+          muted: '#64748b',
         },
         accent: {
-          DEFAULT: '#48bb6c',
-          dim: 'rgba(72, 187, 108, 0.12)',
-          gold: '#c9a84c',
-          'gold-dim': 'rgba(201, 168, 76, 0.12)',
-          blue: '#4a9eff',
-          red: '#ef6461',
+          DEFAULT: '#10b981',
+          dim: 'rgba(16, 185, 129, 0.1)',
+          gold: '#f59e0b',
+          'gold-dim': 'rgba(245, 158, 11, 0.1)',
+          blue: '#3b82f6',
+          red: '#ef4444',
+          purple: '#8b5cf6',
         },
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
-        display: ['Plus Jakarta Sans', 'sans-serif'],
       },
       animation: {
         'fade-up': 'fadeUp 0.7s ease forwards',
@@ -84,7 +84,7 @@ module.exports = {
           '100%': { backgroundPosition: '0% 50%' },
         },
         typingCursor: {
-          '0%, 100%': { borderColor: '#48bb6c' },
+          '0%, 100%': { borderColor: '#10b981' },
           '50%': { borderColor: 'transparent' },
         },
         bounceSubtle: {

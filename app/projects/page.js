@@ -60,7 +60,7 @@ export default function ProjectsPage() {
                   onClick={() => setFilter(c)}
                   className={`px-5 py-2.5 rounded-full text-sm font-semibold border transition-all duration-200 ${
                     filter === c
-                      ? 'border-accent text-accent bg-accent/10 shadow-[0_0_20px_rgba(80,200,120,0.1)]'
+                      ? 'border-accent text-accent bg-accent/10 shadow-[0_0_20px_rgba(16,185,129,0.1)]'
                       : 'border-border text-text-secondary bg-bg-card hover:border-accent/30 hover:text-text-primary'
                   }`}
                 >
@@ -100,10 +100,10 @@ export default function ProjectsPage() {
               const isExpanded = expandedId === p.id;
               
               const bgGradient = isAI 
-                ? 'radial-gradient(ellipse 70% 90% at 50% 100%, rgba(147,51,234,0.1), transparent)'
+                ? 'radial-gradient(ellipse 70% 90% at 50% 100%, rgba(139,92,246,0.1), transparent)'
                 : isBI 
-                  ? 'radial-gradient(ellipse 70% 90% at 50% 100%, rgba(242,200,17,0.1), transparent)'
-                  : 'radial-gradient(ellipse 70% 90% at 50% 100%, rgba(80,200,120,0.1), transparent)';
+                  ? 'radial-gradient(ellipse 70% 90% at 50% 100%, rgba(245,158,11,0.1), transparent)'
+                  : 'radial-gradient(ellipse 70% 90% at 50% 100%, rgba(16,185,129,0.1), transparent)';
               
               const badgeClass = isAI
                 ? 'bg-purple-500/15 text-purple-400'
@@ -113,7 +113,7 @@ export default function ProjectsPage() {
 
               return (
                 <Reveal key={p.id} type="scale" delay={Math.min(i + 1, 6)}>
-                  <div className={`relative flex flex-col bg-bg-card border ${isExpanded ? 'border-accent shadow-[0_8px_30px_rgba(80,200,120,0.15)]' : 'border-border'} rounded-2xl overflow-hidden group card-hover h-full transition-all duration-300 hover:shadow-[0_8px_30px_rgba(80,200,120,0.15)] hover:border-accent/50`}>
+                  <div className={`relative flex flex-col bg-bg-card border ${isExpanded ? 'border-accent shadow-[0_8px_30px_rgba(16,185,129,0.15)]' : 'border-border'} rounded-2xl overflow-hidden group card-hover h-full transition-all duration-300 hover:shadow-[0_8px_30px_rgba(16,185,129,0.15)] hover:border-accent/50`}>
                     {/* Header */}
                     <div className="h-44 relative overflow-hidden flex items-center justify-center bg-bg-secondary/50">
                       <div className="absolute inset-0 dot-grid opacity-25" />

@@ -98,7 +98,7 @@ export default function ContactPage() {
                   <button
                     onClick={handleSubmit}
                     disabled={!form.name || !form.email || !form.message || sending}
-                    className="btn-ripple shine w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-10 py-4 bg-gradient-to-r from-accent to-emerald-600 text-bg-primary font-bold text-sm rounded-xl hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(80,200,120,0.3)] transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                    className="btn-ripple shine w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-10 py-4 bg-gradient-to-r from-accent to-emerald-400 text-bg-primary font-bold text-sm rounded-xl hover:-translate-y-0.5 hover:shadow-[0_8px_40px_rgba(16,185,129,0.3)] transition-all duration-300 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0"
                   >
                     <Send size={15} /> {sending ? 'Sending...' : 'Send Message'}
                   </button>
@@ -117,8 +117,8 @@ export default function ContactPage() {
                   {[
                     { icon: Linkedin, label: 'linkedin.com/in/malharpawar505', href: 'https://www.linkedin.com/in/malharpawar505/', color: '#0a66c2' },
                     { icon: Github, label: 'github.com/malharpawar505', href: 'https://github.com/malharpawar505', color: '#8b949e' },
-                    { icon: Mail, label: 'pawarmalhar505@gmail.com', href: 'mailto:pawarmalhar505@gmail.com', color: '#50c878' },
-                    { icon: MapPin, label: 'Pune, Maharashtra, India', href: null, color: '#e2c06d' },
+                    { icon: Mail, label: 'pawarmalhar505@gmail.com', href: 'mailto:pawarmalhar505@gmail.com', color: '#10b981' },
+                    { icon: MapPin, label: 'Pune, Maharashtra, India', href: null, color: '#f59e0b' },
                   ].map((item, i) => {
                     const Icon = item.icon;
                     const inner = (
@@ -151,7 +151,7 @@ export default function ContactPage() {
                     'Full-time Data Engineering roles',
                     'Analytics Engineering positions',
                     'BI & AI consulting projects',
-                    'Freelance Power BI development',
+                    'Technical collaboration & mentoring',
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3">
                       <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
